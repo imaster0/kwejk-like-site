@@ -18,7 +18,9 @@ class CreatePostsTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->longText('content');
-			$table->date('created_at');
+            $table->integer('up')->default(0);
+            $table->integer('down')->default(0);
+			      $table->timestamps();
         });
     }
 

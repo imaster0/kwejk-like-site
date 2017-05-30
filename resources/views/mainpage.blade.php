@@ -3,17 +3,16 @@
 
 @section('ndbar')
 <div class="c-submenu row">
-	<div class="container">							
-		<!--		<a href="#">#polityka</a>
-				<a href="#">#cośtam</a> 
-				<a href="#">#wszystko</a>
-		-->
+	<div class="container">
+
+			<?php $tags = App\Tag::all(); ?>
+
+
 			<ul class="nav nav-pills">
 				<li <?php if($tag == 'all') echo ' class="active" '; ?> ><a href="/">#wszystko</a></li>
-				<li <?php if($tag == 'politics') echo ' class="active" '; ?>><a href="/q=politics">#polityka</a></li>
-				<li <?php if($tag == 'culture') echo ' class="active" '; ?>><a href="/q=culture">#kultura</a></li>
-				<li <?php if($tag == 'technics') echo ' class="active" '; ?>><a href="/q=technics">#technika</a></li>
-				<li <?php if($tag == 'everyday_life') echo ' class="active" '; ?>><a href="/q=everyday_life">#życie_codzienne</a></li>
+				@foreach($tags as $t)
+					<li <?php if($tag == $t->name) echo ' class="active" '; ?> ><a href="/q={{$t->name}}">#{{$t->name}}</a></li>
+				@endforeach
 			</ul>
 		</div>
 </div>
@@ -21,7 +20,7 @@
 
 @section('content')
 	<!----------------------------------------------------------------------->
-	
+
 	<!-- RANKING -->
 	<div id="ranking">
 		<div class="container-fluid">
@@ -29,10 +28,10 @@
 				<div class="col-md-8">
 					<h4> AKTUALNOŚCI </h4>
 					<p class="c-opis">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Ut maximus velit quis semper eleifend. Morbi finibus suscipit
 					fringilla. Quisque ullamcorper, lacus et hendrerit commodo, sem lectus
-					feugiat ex, non efficitur purus nisl a enim. Aliquam erat volutpat. 
+					feugiat ex, non efficitur purus nisl a enim. Aliquam erat volutpat.
 					</p>
 					<p class="c-temat-dnia alert alert-info">
 						#TEMAT_DNIA: Na co komu dziś wczorajszy dzień?
@@ -53,12 +52,12 @@
 	<!--  CONTENT -->
 	<div id="content">
 			<!-- POSTY -->
-			<?php 
-			
+			<?php
+
 			if($tag =='all')  $posts = App\Post::orderBy('created_at', 'desc')->get();
 			else $posts = App\Tag::where('name', $tag)->first()->posts()->orderBy('created_at', 'desc')->get();
 			?>
-		
+
 				@foreach($posts as $post)
 						<div class="c-post">
 							<div class="row">
@@ -67,41 +66,42 @@
 									<div class="col-md-6 col-sm-6 col-xs-6  c-post-date text-right"> {{$post->created_at->format('d M Y - H:i:s') }} </div>
 								</div>
 							</div>
-							
-							<?php 
-							$tags = $post->tags()->get();
+
+							<?php
+								$tags = $post->tags()->get();
 							?>
-							
+
 							<div class="tag-bar row">
 								<div class="container-fluid">
 								@
 								@foreach($tags as $t)
-								 #{{$t->name}}  
+								 #{{$t->name}}
 								@endforeach
 								</div>
 							</div>
-							
+
 							<div class="c-post-content container-fluid">
 								<div class="row">
 									<h3> {{ $post->title }} </h3>
 								</div>
 
 								<div class="row">
-									
+
 										{{ $post->content }}
-									
+
 								</div>
 							</div>
 							<!-- Panel dolny posta  -->
 							<div class="row ">
 								<div class="c-post-panel">
-									<button class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button> 
+									Ocena: {{ $post->up }}/{{ $post->down }}
+									<button class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button>
 									<button class="btn btn-danger"><span class="glyphicon glyphicon-chevron-down"></span></button>
 									<button class="btn btn-info btn-comment"><span class="glyphicon glyphicon-comment"></span></button>
 								</div>
 							</div>
 						</div>
 				@endforeach
-			
+
 	</div>
 @endsection
