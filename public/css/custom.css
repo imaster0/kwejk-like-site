@@ -198,6 +198,25 @@ form textarea{
 	background: lightgrey;
 }
 
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label{
+	display:inline-block;
+  vertical-align:middle;
+	color: white;
+	cursor: pointer;
+}
+
+
+.badge-success{
+	background:  #5cb855;
+}
+
+.badge-danger{
+	background: #d9534f;
+}
 
 /*************************************************
 /* STOPKA *****************************************

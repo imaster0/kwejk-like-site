@@ -8,9 +8,27 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dodaj</div>
                 <div class="panel-body">
+
+
+
+
 						<form class="form-horizontal" role="form" method="POST" action="{{ route('dodaj') }}">
                         {{ csrf_field() }}
-						
+            <div class="row container-fluid">
+              <?php $tags = App\Tag::all(); ?>
+              <ul class="tag-list list-inline">
+              @foreach($tags as $tag)
+                <!-- <a href="#"><li class="tag-option badge badge-success">{{$tag->name}}<i class="fa fa-plus-circle" aria-hidden="true"></i></li></a> -->
+                <input type="checkbox" name="tagi[]" id="in_{{$tag->name}}" value="{{$tag->name}}" autocomplete="off" />
+                <label class="tag-option badge badge-success" for="in_{{$tag->name}}">
+                  {{$tag->name}}
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </label>
+              @endforeach
+              </ul>
+            </div>
+
+
 						<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-2 control-label">Tytuł</label>
 
@@ -24,7 +42,7 @@
                                 @endif
                             </div>
                         </div>
-						
+
 						<div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-2 control-label">Treść</label>
 
@@ -37,7 +55,7 @@
                                 @endif
                             </div>
                         </div>
-						
+
 						<div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -45,7 +63,7 @@
                                 </button>
                             </div>
                         </div>
-						
+
 						</form>
                 </div>
         </div>

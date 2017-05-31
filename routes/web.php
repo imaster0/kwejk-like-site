@@ -35,7 +35,7 @@ Route::get('/users', function(){
 		}
 		echo "<br>";
 	}
-	
+
 });
 
 Route::get('dodaj', function(){

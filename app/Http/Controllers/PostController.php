@@ -10,12 +10,14 @@ class PostController extends Controller
 {
     //
 	public function add(Request $request){
+
 		$this->validator($request->all())->validate();
 		$this->create($request->all());
-		
+		if(!empty($request->tagi)) $this->addTags($request->tagi);
+
 		return redirect('/');
 	}
-	
+
 	  protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -32,4 +34,13 @@ class PostController extends Controller
             'content' => $data['content'],
         ]);
     }
+
+		protected function addTags(array $data){
+			foreach($data as $d){
+				\DB::table('post_tag')->insert([
+					'post_id' => Post::all()->last()->id,
+					'tag_id' => \App\Tag::where('name', $d)->get()->first()->id,
+				]);
+			}
+		}
 }
