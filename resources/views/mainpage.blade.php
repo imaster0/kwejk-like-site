@@ -23,7 +23,6 @@
 
 	<!-- RANKING -->
 	<div id="ranking">
-		<div class="container-fluid">
 			<div id="ranking-container" class="row text-center">
 				<div class="col-md-8">
 					<h4> AKTUALNOŚCI </h4>
@@ -45,7 +44,6 @@
 					-------------------- <br />
 					-------------------- <br />
 				</div>
-			</div>
 		</div>
 	</div>
 
@@ -59,46 +57,65 @@
 			?>
 
 				@foreach($posts as $post)
+
 						<div class="c-post">
-							<div class="row">
+							<div class="row c-post-top">
+								<div class="col-md-9 col-xs-8">
+									<div class="tag-bar">
+
+										<?php
+											$tags = $post->tags()->get();
+										?>
+
+
+										<b>#na_temat</b>
+										@foreach($tags as $t)
+										 #{{$t->name}}
+										@endforeach
+									</div>
+								</div>
+								<div class="col-md-3 col-xs-4">
+									<div class="c-post-author">
+										{{$post->created_at->format('d/m/Y')}}<br/>
+										{{$post->user->name}}
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+							<div class="container-fluid c-post-frame">
 								<div class="c-post-header">
-									<div class="col-md-6  col-sm-6 col-xs-6 c-post-author">Dodano przez  {{$post->user->name}}</div>
-									<div class="col-md-6 col-sm-6 col-xs-6  c-post-date text-right"> {{$post->created_at->format('d M Y - H:i:s') }} </div>
+									 {{ $post->title }}
 								</div>
-							</div>
-
-							<?php
-								$tags = $post->tags()->get();
-							?>
-
-							<div class="tag-bar row">
-								<div class="container-fluid">
-								@
-								@foreach($tags as $t)
-								 #{{$t->name}}
-								@endforeach
-								</div>
-							</div>
-
-							<div class="c-post-content container-fluid">
-								<div class="row">
-									<h3> {{ $post->title }} </h3>
-								</div>
-
-								<div class="row">
+								<div class="c-post-content">
 
 										{{ $post->content }}
 
 								</div>
 							</div>
 							<!-- Panel dolny posta  -->
-							<div class="row ">
+
 								<div class="c-post-panel">
-									Ocena: {{ $post->up }}/{{ $post->down }}
+									<div class="row ">
+									<h1> A Ty? Co uważasz? </h1>
+									</div>
+									<!-- Ocena: {{ $post->up }}/{{ $post->down }}
 									<button class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button>
 									<button class="btn btn-danger"><span class="glyphicon glyphicon-chevron-down"></span></button>
 									<button class="btn btn-info btn-comment"><span class="glyphicon glyphicon-comment"></span></button>
-								</div>
+									-->
+									<div class="row">
+										<ul class="list-inline">
+											<li>odpowiedz</li>
+											<li>+dodaj</li>
+											<li><span class="text-success">zgadzam się</span></li>
+											<li><span class="text-danger">nie zgadzam się</span></li>
+											<li>udostępnij</li>
+										</ul>
+									</div>
 							</div>
 						</div>
 				@endforeach

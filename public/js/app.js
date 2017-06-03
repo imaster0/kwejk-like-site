@@ -11,7 +11,6 @@ $(function() {
 	//wybieranie tagów
 	$('.tag-option').on('click', function(event){
 		var img = $(this).children('i').first();
-		console.log("Clicked!");
 
 		if(img.hasClass('fa-plus-circle')){
 			img.removeClass('fa-plus-circle');

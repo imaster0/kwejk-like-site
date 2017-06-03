@@ -137,57 +137,93 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	background: lightgrey;
+	border: 5px solid black;
+	background: white;
+	color: black;
 	margin: 20px 0px;
-    padding: 50px;
 	overflow: hidden;
+	min-height: 500px;
+		font-size: 22px;
 }
 
+.row{
+	margin: 0;
+}
+
+.c-post-top{
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	top: 7px;
+}
+
+.c-post-author{
+	text-align: right;
+}
 
 .c-post-header{
-	height: 10%;
+	font-size: 42px;
+	font-weight: bold;
+}
+
+.c-post-frame{
+	height: 100%;
 }
 
 .c-post-content{
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 155px;
+	margin-left: 75px;
+	margin-right: 75px;
+	font-weight: bold;
+
 }
 
-
-.tag-bar{
-	margin-top: 10px;
-	background: black;
-	color: white;
-}
 
 
 @media screen and (min-width: 768px){
 .c-post{
 	position: relative;
 	margin: 20px 0px;
-    padding: 50px;
-	background: lightgrey;
+	background: white;
 }
 
  .c-post-content{
-	 padding-bottom: 50px;
+	 padding-bottom: 130px;
   }
 
 }
 
-.c-post-date{
-	position: relative;
-	top: 5px;
-}
-
 .c-post-panel{
 	position: absolute;
-	height: 50px;
+	height: 130px;
+	background: black;
+	color: white;
+	text-align: center;
+	width: 100%;
 	bottom: 0px;
+}
+
+.c-post-panel h1{
+		font-size: 42px;
+		font-weight: bold;
 }
 
 
 /*************************************************
 /* FORMULARZE ************************************
 *************************************************/
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 
 form textarea{
 	max-width: 100%;
@@ -201,6 +237,8 @@ form textarea{
 input[type="checkbox"] {
     display:none;
 }
+
+
 
 input[type="checkbox"] + label{
 	display:inline-block;

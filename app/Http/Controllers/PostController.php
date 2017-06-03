@@ -13,6 +13,7 @@ class PostController extends Controller
 
 		$this->validator($request->all())->validate();
 		$this->create($request->all());
+
 		if(!empty($request->tagi)) $this->addTags($request->tagi);
 
 		return redirect('/');
@@ -39,7 +40,7 @@ class PostController extends Controller
 			foreach($data as $d){
 				\DB::table('post_tag')->insert([
 					'post_id' => Post::all()->last()->id,
-					'tag_id' => \App\Tag::where('name', $d)->get()->first()->id,
+					'tag_id' => \App\Tag::where('name', $d)->first()->id,
 				]);
 			}
 		}

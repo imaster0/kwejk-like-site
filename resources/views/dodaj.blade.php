@@ -20,7 +20,7 @@
               @foreach($tags as $tag)
                 <!-- <a href="#"><li class="tag-option badge badge-success">{{$tag->name}}<i class="fa fa-plus-circle" aria-hidden="true"></i></li></a> -->
                 <input type="checkbox" name="tagi[]" id="in_{{$tag->name}}" value="{{$tag->name}}" autocomplete="off" />
-                <label class="tag-option badge badge-success" for="in_{{$tag->name}}">
+                <label class="tag-option badge badge-success noselect" for="in_{{$tag->name}}">
                   {{$tag->name}}
                   <i class="fa fa-plus-circle" aria-hidden="true"></i>
                 </label>
