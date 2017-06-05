@@ -99,9 +99,7 @@
 							<!-- Panel dolny posta  -->
 
 								<div class="c-post-panel">
-									<div class="row ">
-									<h1> A Ty? Co uważasz? </h1>
-									</div>
+									<!-- <div class="row "> <h1> A Ty? Co uważasz? </h1> </div> -->
 									<!-- Ocena: {{ $post->up }}/{{ $post->down }}
 									<button class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button>
 									<button class="btn btn-danger"><span class="glyphicon glyphicon-chevron-down"></span></button>
