@@ -1,3 +1,27 @@
+/* kolory
+
+motyw1{  zielono czarny
+ciemniejszy: 030813
+jaśniejszy: 00857A
+}
+
+motyw2{ granatowo czarny
+ciemniejszy: 030813
+jaśniejszy: 141D30
+}
+
+motyw3{ niebiesko niebieski xd
+ciemniejszy: 0C4491
+jaśniejszy: 3D76C4
+}
+
+motyw4{ czerwony
+ciemniejszy: D60014
+jaśniejszy: F93D4F
+}
+*/
+
+
 html,
 body {
 	margin:0;
@@ -51,7 +75,7 @@ a{
 }
 
 #navbar-menu a:hover {
-	color: #131A22 !important;
+	color: #030813 !important;
 }
 
 .navbar-brand,
@@ -63,12 +87,12 @@ a{
 
 .c-menu{
 	border: 0px;
-	background: #00857A;
+	background: #00857A ;
 	color: white;
 }
 
 .c-submenu{
-	background: #131A22;
+	background: #030813;
 	color: white;
 	padding: 4px;
 	border: 0px;
@@ -81,7 +105,7 @@ a{
 }
 
 .c-submenu .nav-pills li.active a{
-	background: #00857A !important;
+	background: #00857A  !important;
 }
 
 .c-submenu ul{
@@ -96,7 +120,7 @@ a{
 }
 
 .c-submenu a:hover{
-	color: #131A22 !important;
+	color: #030813 !important;
 }
 
 
@@ -115,7 +139,7 @@ a{
 
 #ranking-container{
 		display: block;
-		background: #131A22;
+		background: #030813;
 		padding: 15px 0px;
 }
 
@@ -125,7 +149,7 @@ a{
 }
 
 .c-temat-dnia{
-	background: #00857A;
+	background: #00857A ;
 	color: white;
 }
 
@@ -134,9 +158,6 @@ a{
 /* CONTENT ***************************************
 *************************************************/
 
-.text-success{
-	color: #00857A;
-}
 
 
 
@@ -145,9 +166,9 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	border: 5px solid #131A22;
+	border: 5px solid #030813;
 	background: white;
-	color: #131A22;
+	color: #030813;
 	margin: 50px 0px; /* ===================> ODSTĘPY POMIĘDZY POSTAMI */
 	overflow: hidden;
 	min-height: 500px;
@@ -206,7 +227,7 @@ a{
 .c-post-panel{
 	position: absolute;
 	min-height: 60px;
-	background: #131A22;
+	background: #030813;
 	color: white;
 	text-align: center;
 	width: 100%;
@@ -257,12 +278,20 @@ input[type="checkbox"] + label{
 	background:  #5cb855;
 }
 
+.text-success{
+	color: #5cb855 !important;
+}
+
 .badge-danger{
 	background: #d9534f;
 }
 
+.text-danger{
+	color: #d9534f !important;
+}
+
 .panel-heading{
-	background: #00857A !important;
+	background: #00857A  !important;
 	color: white !important;
 }
 
@@ -276,6 +305,6 @@ input[type="checkbox"] + label{
 	margin: 0px;
 	bottom:0;
 	left:0;
-	background: #131A22;
+	background: #030813;
 	color: white;
 }
