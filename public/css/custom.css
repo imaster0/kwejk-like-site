@@ -19,6 +19,11 @@ motyw4{ czerwony
 ciemniejszy: D60014
 jaśniejszy: F93D4F
 }
+
+motyw5{ niebiesko-szary
+ciemniejszy: 404040
+jaśniejszy: 3D76C4
+}
 */
 
 
@@ -75,7 +80,7 @@ a{
 }
 
 #navbar-menu a:hover {
-	color: #030813 !important;
+	color: #404040 !important;
 }
 
 .navbar-brand,
@@ -87,12 +92,12 @@ a{
 
 .c-menu{
 	border: 0px;
-	background: #00857A ;
+	background: #3D76C4 ;
 	color: white;
 }
 
 .c-submenu{
-	background: #030813;
+	background: #404040;
 	color: white;
 	padding: 4px;
 	border: 0px;
@@ -105,7 +110,7 @@ a{
 }
 
 .c-submenu .nav-pills li.active a{
-	background: #00857A  !important;
+	background: #3D76C4  !important;
 }
 
 .c-submenu ul{
@@ -120,7 +125,7 @@ a{
 }
 
 .c-submenu a:hover{
-	color: #030813 !important;
+	color: #404040 !important;
 }
 
 
@@ -139,7 +144,7 @@ a{
 
 #ranking-container{
 		display: block;
-		background: #030813;
+		background: #404040;
 		padding: 15px 0px;
 }
 
@@ -149,7 +154,7 @@ a{
 }
 
 .c-temat-dnia{
-	background: #00857A ;
+	background: #3D76C4 ;
 	color: white;
 }
 
@@ -166,9 +171,9 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	border: 5px solid #030813;
+	border: 5px solid #404040;
 	background: white;
-	color: #030813;
+	color: #404040;
 	margin: 50px 0px; /* ===================> ODSTĘPY POMIĘDZY POSTAMI */
 	overflow: hidden;
 	min-height: 500px;
@@ -227,7 +232,7 @@ a{
 .c-post-panel{
 	position: absolute;
 	min-height: 60px;
-	background: #030813;
+	background: #404040;
 	color: white;
 	text-align: center;
 	width: 100%;
@@ -291,7 +296,7 @@ input[type="checkbox"] + label{
 }
 
 .panel-heading{
-	background: #00857A  !important;
+	background: #3D76C4  !important;
 	color: white !important;
 }
 
@@ -305,6 +310,6 @@ input[type="checkbox"] + label{
 	margin: 0px;
 	bottom:0;
 	left:0;
-	background: #030813;
+	background: #404040;
 	color: white;
 }
