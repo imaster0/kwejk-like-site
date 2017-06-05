@@ -11,38 +11,20 @@ body {
 	position:relative;
 }
 
-#header {
-}
 
 #content {
 	padding-bottom:50px;
 }
 
-#footer {
-	position:absolute;
-	width:100%;
-	min-height:50px;
-	margin: 0px;
-	bottom:0;
-	left:0;
-}
+
 
 
 a{
 	text-decoration: none !important;
 }
 
-#navbar-menu a:focus {
-	color: grey !important;
-}
 
-#navbar-menu a:hover {
-	color: black !important;
-}
 
-.navbar-brand{
-	font: 24px Impact, Charcoal, sans-serif;
-}
 
 .main_content{
 	height: 100%;
@@ -63,12 +45,30 @@ a{
 *************************************************/
 
 
+#navbar-menu a,
+#navbar-menu a:focus {
+	color: white !important;
+}
+
+#navbar-menu a:hover {
+	color: #131A22 !important;
+}
+
+.navbar-brand,
+.navbar-brand a{
+	font: 24px Impact, Charcoal, sans-serif;
+	color: white;
+}
+
+
 .c-menu{
 	border: 0px;
+	background: #00857A;
+	color: white;
 }
 
 .c-submenu{
-	background: black;
+	background: #131A22;
 	color: white;
 	padding: 4px;
 	border: 0px;
@@ -78,6 +78,10 @@ a{
   height: 30px;
   line-height: 30px;
   padding-top: 0;
+}
+
+.c-submenu .nav-pills li.active a{
+	background: #00857A !important;
 }
 
 .c-submenu ul{
@@ -92,7 +96,7 @@ a{
 }
 
 .c-submenu a:hover{
-	color: grey !important;
+	color: #131A22 !important;
 }
 
 
@@ -111,7 +115,7 @@ a{
 
 #ranking-container{
 		display: block;
-		background: grey;
+		background: #131A22;
 		padding: 15px 0px;
 }
 
@@ -121,6 +125,8 @@ a{
 }
 
 .c-temat-dnia{
+	background: #00857A;
+	color: white;
 }
 
 
@@ -128,7 +134,9 @@ a{
 /* CONTENT ***************************************
 *************************************************/
 
-
+.text-success{
+	color: #00857A;
+}
 
 
 
@@ -137,13 +145,14 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	border: 5px solid black;
+	border: 5px solid #131A22;
 	background: white;
-	color: black;
-	margin: 20px 0px;
+	color: #131A22;
+	margin: 50px 0px; /* ===================> ODSTĘPY POMIĘDZY POSTAMI */
 	overflow: hidden;
 	min-height: 500px;
 		font-size: 22px;
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);  /* ================================> CIEŃ POSTA testowe */
 }
 
 .row{
@@ -185,7 +194,6 @@ a{
 @media screen and (min-width: 768px){
 .c-post{
 	position: relative;
-	margin: 20px 0px;
 	background: white;
 }
 
@@ -197,8 +205,8 @@ a{
 
 .c-post-panel{
 	position: absolute;
-	height: 60px;
-	background: black;
+	min-height: 60px;
+	background: #131A22;
 	color: white;
 	text-align: center;
 	width: 100%;
@@ -232,7 +240,7 @@ form textarea{
 
 .c-form{
 	padding: 10% 100px;
-	background: lightgrey;
+	background: light#131A22;
 }
 
 input[type="checkbox"] {
@@ -260,10 +268,13 @@ input[type="checkbox"] + label{
 /*************************************************
 /* STOPKA *****************************************
 *************************************************/
-
-.c-footer{
-	position: absolute;
-	bottom: 0;
-	min-height: 50px;
+#footer {
+	position:absolute;
+	width:100%;
+	min-height:50px;
 	margin: 0px;
+	bottom:0;
+	left:0;
+	background: #131A22;
+	color: white;
 }
