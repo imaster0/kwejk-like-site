@@ -238,10 +238,6 @@ form textarea{
 	max-width: 100%;
 }
 
-.c-form{
-	padding: 10% 100px;
-	background: light#131A22;
-}
 
 input[type="checkbox"] {
     display:none;
@@ -263,6 +259,11 @@ input[type="checkbox"] + label{
 
 .badge-danger{
 	background: #d9534f;
+}
+
+.panel-heading{
+	background: #00857A !important;
+	color: white !important;
 }
 
 /*************************************************
