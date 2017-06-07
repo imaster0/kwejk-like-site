@@ -42,6 +42,11 @@ Route::get('dodaj', function(){
 	return view('dodaj');
 })->name('dodaj');
 
+Route:: get('poczekalnia', function(){
+	$tag = 'all';
+	return view('poczekalnia', ['tag' => $tag]);
+});
+
 Route::post('dodaj', 'PostController@add');
 
 

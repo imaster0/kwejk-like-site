@@ -1,5 +1,9 @@
 @extends('layout.template')
 
+@section('strona')
+<?php $strona = 'login'; ?>
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row">

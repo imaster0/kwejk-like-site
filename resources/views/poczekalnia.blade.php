@@ -1,7 +1,7 @@
 @extends('layout.template')
 
 @section('strona')
-<?php $strona = 'glowna'; ?>
+<?php $strona = 'poczekalnia'; ?>
 @endsection
 
 @section('ndbar')
@@ -55,8 +55,8 @@
 			<!-- POSTY -->
 			<?php
 
-			if($tag =='all')  $posts = App\Post::where('verified', true)->orderBy('created_at', 'desc')->get();
-			else $posts = App\Tag::where('name', $tag)->first()->posts()->where('verified', true)->orderBy('created_at', 'desc')->get();
+			if($tag =='all')  $posts = App\Post::where('verified', false)->orderBy('created_at', 'desc')->get();
+			else $posts = App\Tag::where('name', $tag)->first()->posts()->where('verified', false)->orderBy('created_at', 'desc')->get();
 			?>
 
 				@foreach($posts as $post)

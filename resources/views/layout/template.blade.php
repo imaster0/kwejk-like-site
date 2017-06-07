@@ -12,12 +12,12 @@
 		<link href="{{ asset(' vendor/font-awesome/css/font-awesome.min.css') }} " rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.css') }}" type="text/css">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
-		
+
 		<!-- Scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script>
-		
+
     </head>
     <body>
 		<div id="wrapper">
@@ -33,28 +33,35 @@
 									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
 								</button>
 							</div>
-							
+
 							<!-- PRZYCISKI MENU -->
 							<div id="navbar-menu" class="collapse navbar-collapse" role="menu">
-								@if(Auth::guest())
-								<ul class="nav navbar-nav navbar-right">
-									<li><a href="/login">Zaloguj</a></li>
-									<li><a href="/register">Zarejestruj</a></li>
-								</ul>
-								@else
-									
-									<ul class="nav navbar-nav navbar-right" role="menu">
+
+
+
+
+              
+                  @yield('strona')
+
+
+									<ul class="nav navbar-nav navbar-right c-menu-first" role="menu">
+                    <li @if($strona=='glowna') class="active" @endif><a href="/">Strona Główna</a></li>
+                    <li @if($strona=='poczekalnia') class="active" @endif><a href="/poczekalnia">Poczekalnia</a></li>
+                    @if(Auth::guest())
+                    <li @if($strona=='login') class="active" @endif><a href="/login">Zaloguj</a></li>
+  									<li @if($strona=='register') class="active" @endif><a href="/register">Zarejestruj</a></li>
+                    @else
 										<li>
 										<a href="/profile"> {{ Auth::user()->name }}  </a>
 										</li>
-										<li>
+										<li @if($strona=='dodaj') class="active" @endif>
 										<a href="/dodaj"> Dodaj  </a>
 										</li>
 										<li>
 											<a href="{{ route('logout') }}"
 												onclick="event.preventDefault();
 														 document.getElementById('logout-form').submit();">
-												Logout
+												Wyloguj
 											</a>
 
 											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -65,18 +72,19 @@
 								</li>
 								@endif
 							</div>
-					</div>
-					<!-- DRUGIE MENU (SUBMENU z kategoriami) -->
-						@yield('ndbar')
+        </div>
+
+          					<!-- DRUGIE MENU (SUBMENU z kategoriami) -->
+        	@yield('ndbar')
 				</div>
-				
 			</nav>
 
 			<!----------------------------------------------------------------------->
-			<section id="content" class="main_content">
+
+      <section id="content" class="main_content">
 				@yield('content')
 			</section>
-			
+
 			<footer id="footer" class="well">
 				<div class="container">
 					<div class="row">

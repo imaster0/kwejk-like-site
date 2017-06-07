@@ -1,6 +1,8 @@
 @extends('layout.template')
 
-
+@section('strona')
+<?php $strona = 'dodaj'; ?>
+@endsection
 
 @section('content')
 <div class="container-fluid">

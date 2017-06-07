@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->integer('up')->default(0);
             $table->integer('down')->default(0);
+            $table->boolean('verified')->default(false);
 			      $table->timestamps();
         });
     }
