@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('users')->insert([
-          'name' => 'testUser',
-          'password' => bcrypt('pass1234'),
-        ]);
+        DB::table('roles')->insert(['name' => 'verify']);
     }
 }

@@ -59,6 +59,59 @@
 			else $posts = App\Tag::where('name', $tag)->first()->posts()->where('verified', false)->orderBy('created_at', 'desc')->get();
 			?>
 
+			<!-- TEST GRAFIKA -->
+			<?php
+
+			function drawBorder(&$img, &$color, $thickness = 5)
+			{
+			    $x1 = 0;
+			    $y1 = 0;
+			    $x2 = ImageSX($img) - 1;
+			    $y2 = ImageSY($img) - 1;
+
+			    for($i = 0; $i < $thickness; $i++)
+			    {
+			        ImageRectangle($img, $x1++, $y1++, $x2--, $y2--, $color);
+			    }
+			}
+
+
+			$im = @imagecreate(768, 500)
+			    or die("Cannot Initialize new GD image stream");
+
+			// Colors
+			$white = imagecolorallocate($im, 255, 255, 255);
+			$black = imagecolorallocate($im, 0, 0, 0);
+			drawBorder($im, $black);
+
+			// Replace path by your own font path
+			$arial_font = 'fonts/arial.ttf';
+			$arialbd_font = 'fonts/arialbd.ttf';
+
+			//Logo
+			imagefilledrectangle($im, 768-20, 25, 768, 105, $black);
+			imagettftext($im, 10, 90, 763, 102, $white, $arialbd_font, 'cotynato.eu');
+			//Title
+			imagettftext($im, 32, 0, 40, 80, $black, $arialbd_font, 'Testing...');
+			//content
+			use App\GDText\Box;
+			use App\GDText\Color;
+
+			$box = new Box($im);
+			$box->setFontFace('fonts/arial.ttf');
+			$box->setFontColor(new Color(0, 0, 0));
+			$box->setFontSize(26);
+			$box->setBox(140, 140, 768-280, 500-240);
+			$box->setTextAlign('center', 'center');
+			$box->draw("Lorem ipsum");
+
+
+			imagepng($im, "shittty.png");
+			imagedestroy($im);
+			?>
+			<!-- TEST TEST TEST -->
+
+
 				@foreach($posts as $post)
 
 						<div class="c-post">
