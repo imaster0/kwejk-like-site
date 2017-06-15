@@ -12,6 +12,17 @@
 */
 
 
+//TEST
+
+// usage inside a laravel route
+Route::get('/test', function()
+{
+	$img = Image::make(storage_path()."/imgs/shittty.png");
+	return $img->response('png');
+});
+///----------------------------
+
+
 
 Route::get('/q={tag?}', function($tag = 'all') {
 	return view('mainpage', ['tag' =>$tag]);

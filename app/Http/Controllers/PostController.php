@@ -29,10 +29,21 @@ class PostController extends Controller
 
     protected function create(array $data)
     {
+			//post frame
+			$img = \Image::canvas(768, 500, '#ffffff');
+			$img->rectangle(2.5, 2.5, 768-2.5, 500-2.5, function($draw){
+				$draw->border(5, '#000');
+			});
+			// draw filled red rectangle
+			$img->rectangle(768-25, 30, 768, 130, function ($draw) {
+			    $draw->background('#000');
+			});
+
+			$img->save('imgs/shittty.png');  //random name or something
+
         return Post::create([
-			'user_id' => \Auth::user()->id,
-            'title' => $data['title'],
-            'content' => $data['content'],
+						'user_id' => \Auth::user()->id,
+            'path' => 'imgs/shittty.png',
         ]);
     }
 

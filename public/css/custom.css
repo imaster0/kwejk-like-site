@@ -180,12 +180,11 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	border: 5px solid #030813;
 	background: white;
 	color: #030813;
 	margin: 50px 0px; /* ===================> ODSTĘPY POMIĘDZY POSTAMI */
 	overflow: hidden;
-	min-height: 500px;
+	min-height: 600px;
 		font-size: 22px;
 	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);  /* ================================> CIEŃ POSTA testowe */
 }
@@ -199,6 +198,8 @@ a{
 	left: 0px;
 	right: 0px;
 	top: 7px;
+	background: black;
+	color: white;
 }
 
 .c-post-author{
@@ -238,8 +239,11 @@ a{
 
 }
 
+.c-post-image{
+	height: 500px;
+}
+
 .c-post-panel{
-	position: absolute;
 	min-height: 60px;
 	background: #030813;
 	color: white;
