@@ -27,7 +27,7 @@
 					<div class="container">
 							<div class="navbar-header">
 								<div class="navbar-brand">
-									<a href="/"> CO UWAŻASZ?</a>
+									<a href="/"> <img src="{{ asset('imgs/template/logo_big.png') }}" style="height: 34px;" alt="CoTYnaTo?" /></a>
 								</div>
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
 									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
@@ -40,7 +40,7 @@
 
 
 
-              
+
                   @yield('strona')
 
 

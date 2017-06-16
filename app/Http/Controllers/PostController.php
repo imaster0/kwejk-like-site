@@ -50,22 +50,13 @@ class PostController extends Controller
 
 			//post
 			$img = \Image::canvas(768, 500, '#ffffff');
-
 			//img background
 			// create a new Image instance for inserting
-			$bg = \Image::make('imgs/template/def.jpg')->resize(768, 500);
+			$bg = \Image::make('imgs/template/post_text.png')->resize(768, 500);
 			$img->insert($bg, 'center');
 
-			//FRAME
-			$img->rectangle(2.5, 2.5, 768-2.5, 500-2.5, function($draw){
-				$draw->border(5, '#000');
-			});
-			// draw filled black rectangle
-			$img->rectangle(768-25, 30, 768, 130, function ($draw) {
-			    $draw->background('#000');
-			});
-
 			$img->save($path);  //random name or something
+
 
 			$im = imagecreatefrompng ($path);
 			//Topic

@@ -92,6 +92,7 @@ a{
 .navbar-brand a{
 	font: 24px Impact, Charcoal, sans-serif;
 	color: white;
+	padding: 8px;
 }
 
 
@@ -282,13 +283,13 @@ form textarea{
 }
 
 
-input[type="checkbox"] {
+.tag-list input[type="checkbox"] {
     display:none;
 }
 
 
 
-input[type="checkbox"] + label{
+.tag-list input[type="checkbox"] + label{
 	display:inline-block;
   vertical-align:middle;
 	color: white;
