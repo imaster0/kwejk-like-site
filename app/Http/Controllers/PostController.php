@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\GDText\Box;
+use App\GDText\Color;
+
 use App\Post;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
+
+
     //
 	public function add(Request $request){
 
@@ -38,8 +44,30 @@ class PostController extends Controller
 			$img->rectangle(768-25, 30, 768, 130, function ($draw) {
 			    $draw->background('#000');
 			});
-
 			$img->save('imgs/shittty.png');  //random name or something
+
+			$im = imagecreatefrompng ('imgs/shittty.png');
+			//Topic
+			$box = new Box($im);
+			$box->setFontFace('fonts/arialbd.ttf'); // http://www.dafont.com/franchise.font
+			$box->setFontColor(new Color(0, 0, 0));
+			$box->setFontSize(40);
+			$box->setBox(50, 50, 768-100, 90);
+			$box->setTextAlign('left', 'top');
+			$box->draw($data["title"]);
+
+			//content
+			$box = new Box($im);
+			$box->setFontFace('fonts/arial.ttf'); // http://www.dafont.com/franchise.font
+			$box->setFontColor(new Color(0, 0, 0));
+			$box->setFontSize(24);
+			$box->setBox(50, 100, 768-100, 500-200);
+			$box->setTextAlign('center', 'center');
+			$box->draw($data["content"]);
+			imagepng($im, 'imgs/shittty.png');
+
+
+
 
         return Post::create([
 						'user_id' => \Auth::user()->id,
