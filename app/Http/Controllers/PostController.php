@@ -35,18 +35,39 @@ class PostController extends Controller
 
     protected function create(array $data)
     {
-			//post frame
+
+			$posted = new Post();
+
+
+			$posted->user_id = \Auth::user()->id;
+			$posted->path = "";
+			$posted->save();
+
+			$path = 'imgs/posts/' . $posted->id . '.png';
+			$posted->path = $path;
+			$posted->save();
+
+
+			//post
 			$img = \Image::canvas(768, 500, '#ffffff');
+
+			//img background
+			// create a new Image instance for inserting
+			$bg = \Image::make('imgs/template/def.jpg')->resize(768, 500);
+			$img->insert($bg, 'center');
+
+			//FRAME
 			$img->rectangle(2.5, 2.5, 768-2.5, 500-2.5, function($draw){
 				$draw->border(5, '#000');
 			});
-			// draw filled red rectangle
+			// draw filled black rectangle
 			$img->rectangle(768-25, 30, 768, 130, function ($draw) {
 			    $draw->background('#000');
 			});
-			$img->save('imgs/shittty.png');  //random name or something
 
-			$im = imagecreatefrompng ('imgs/shittty.png');
+			$img->save($path);  //random name or something
+
+			$im = imagecreatefrompng ($path);
 			//Topic
 			$box = new Box($im);
 			$box->setFontFace('fonts/arialbd.ttf'); // http://www.dafont.com/franchise.font
@@ -64,15 +85,9 @@ class PostController extends Controller
 			$box->setBox(50, 100, 768-100, 500-200);
 			$box->setTextAlign('center', 'center');
 			$box->draw($data["content"]);
-			imagepng($im, 'imgs/shittty.png');
+			imagepng($im, $path);
 
 
-
-
-        return Post::create([
-						'user_id' => \Auth::user()->id,
-            'path' => 'imgs/shittty.png',
-        ]);
     }
 
 		protected function addTags(array $data){
