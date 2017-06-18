@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Co uważasz?</title>
+        <title>cotynato.eu - najlepsze pomysły i lajfhaki w sieci</title>
 
         <!-- Fonts & Styles -->
 	    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -27,7 +27,7 @@
 					<div class="container">
 							<div class="navbar-header">
 								<div class="navbar-brand">
-									<a href="/"> <img src="{{ asset('imgs/template/logo_big.png') }}" style="height: 34px;" alt="CoTYnaTo?" /></a>
+									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 28px; margin-top: 8px; margin-left: 15px;" alt="CoTYnaTo?" /></a>
 								</div>
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
 									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
