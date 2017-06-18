@@ -1,17 +1,11 @@
-$(function() {
+$(function() { //document onload
 	 "use strict";
-	$('a.page-scroll').on('click', function(event) {
-
-        $('html, body').stop().animate({
-            scrollTop: ($($(this).attr('href')).offset().top - 49)
-        }, 1250, 'easeInOutExpo');
-        event.preventDefault();
-    });
 
 	//wybieranie tagów
 	$('.tag-option').on('click', function(event){
 		var img = $(this).children('i').first();
 
+		//zmiana tła i symbolu przy kliknięciu
 		if(img.hasClass('fa-plus-circle')){
 			img.removeClass('fa-plus-circle');
 			img.addClass('fa-minus-circle');

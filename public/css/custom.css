@@ -41,25 +41,17 @@ body {
 	position:relative;
 }
 
-
 #content {
 	padding-bottom:50px;
 }
-
 
 a{
 	text-decoration: none !important;
 }
 
-
-
-
 .main_content{
 	height: 100%;
 }
-
-
-
 
 @media screen and (min-width: 768px){
 	.main_content{
@@ -71,7 +63,6 @@ a{
 /*************************************************
 /*    MENU    ***************************************
 *************************************************/
-
 
 #navbar-menu a,
 #navbar-menu a:focus {
@@ -94,7 +85,6 @@ a{
 	color: white;
 	padding: 0px;
 }
-
 
 .c-menu{
 	border: 0px;
@@ -127,7 +117,6 @@ a{
 	margin: 0px;
 }
 
-
 .c-submenu a,
 .c-submenu a:active{
 	text-decoration: none;
@@ -143,7 +132,6 @@ a{
 /* RANKING ***************************************
 *************************************************/
 
-
 #ranking{
 	position: relative;
 	display: block;
@@ -151,13 +139,11 @@ a{
 	color: white;
 }
 
-
 #ranking-container{
 		display: block;
 		background: #030813;
 		padding: 15px 0px;
 }
-
 
 .c-opis{
 
@@ -168,16 +154,11 @@ a{
 	color: white;
 }
 
-
 /*************************************************
 /* CONTENT ***************************************
 *************************************************/
 
-
-
-
 /* POST */
-
 .c-post{
 	display: block;
 	position: relative;
@@ -222,16 +203,13 @@ a{
 	margin-left: 75px;
 	margin-right: 75px;
 	font-weight: bold;
-
 }
-
-
 
 @media screen and (min-width: 768px){
-.c-post{
-	position: relative;
-	background: white;
-}
+	.c-post{
+		position: relative;
+		background: white;
+	}
 
  .c-post-content{
 	 padding-bottom: 130px;
@@ -281,12 +259,9 @@ form textarea{
 	max-width: 100%;
 }
 
-
 .tag-list input[type="checkbox"] {
     display:none;
 }
-
-
 
 .tag-list input[type="checkbox"] + label{
 	display:inline-block;
@@ -294,7 +269,6 @@ form textarea{
 	color: white;
 	cursor: pointer;
 }
-
 
 .badge-success{
 	background:  #5cb855;
