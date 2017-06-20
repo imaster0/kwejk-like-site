@@ -2,7 +2,7 @@
 
 #TODO
 ## Programowanie
-* 21/06/2017: panel użytkownika
+* 21/06/2017: panel użytkownika, post z obrazkiem
 * 22/06/2017: ulubione użytkownika, top ogólne postów
 * 23/06/2017: top 5 użytkowników miesiąca, weryfikacja postów
 * 24/06/2017: lajki/dislajki, udostępnianie
