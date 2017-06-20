@@ -24,34 +24,11 @@ class PostController extends Controller{
 			return redirect('/');
 		}
 
-		// Sprawdzanie posta
-	  protected function validator(array $data){
-        return Validator::make($data, [
-            'title' => 'required|string|max:50',
-            'content' => 'required|string|max:600',
-        ]);
-    }
-
-		// Tworzenie posta w bazie
-    protected function create(array $data){
-			//nowy post zapisujemy w bazie, bez ścieżki pliku
-			$posted = new Post();
-			$posted->user_id = \Auth::user()->id;
-			$posted->path = "";
-			$posted->save();
-			//wygenerowany post dostaje id, którym nazwiemy nowy plik
-			$path = 'imgs/posts/' . $posted->id . '.png';
-			$posted->path = $path;
-			$posted->save(); //zapisujemy jeszcze raz
-			//tworzymy nowy post (jako obrazek .png)
-			createNewPost($path);
-    }
-
 		//Nowy post jako obrazek .png
-		protected function createNewPost(){
+		private function createNewPost($path, array $data){
 			//tworzymy pusty obrazek, dodajemy tło i ramkę na środek
 			$img = \Image::canvas(768, 500, '#ffffff');
-			$bg = \Image::make('imgs/template/post_text2.png')->resize(768, 500);
+			$bg = \Image::make('imgs/template/post_text3.png')->resize(768, 500);
 			$img->insert($bg, 'center');
 			$img->save($path);  //zapisujemy na ścieżce $path
 			//otwieramy poprzednio utworzony obrazek
@@ -74,6 +51,32 @@ class PostController extends Controller{
 			$box->draw($data["content"]);
 			imagepng($im, $path); //zapisanie na ścieżce $path
 		}
+
+
+		// Sprawdzanie posta
+	  protected function validator(array $data){
+        return Validator::make($data, [
+            'title' => 'required|string|max:50',
+            'content' => 'required|string|max:600',
+        ]);
+    }
+
+		// Tworzenie posta w bazie
+    protected function create(array $data){
+			//nowy post zapisujemy w bazie, bez ścieżki pliku
+			$posted = new Post();
+			$posted->user_id = \Auth::user()->id;
+			$posted->path = "";
+			$posted->save();
+			//wygenerowany post dostaje id, którym nazwiemy nowy plik
+			$path = 'imgs/posts/' . $posted->id . '.png';
+			$posted->path = $path;
+			$posted->save(); //zapisujemy jeszcze raz
+			//tworzymy nowy post (jako obrazek .png)
+			$this->createNewPost($path, $data);
+    }
+
+
 
 		//Dodawanie tagów do posta
 		protected function addTags(array $data){

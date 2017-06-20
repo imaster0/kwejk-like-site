@@ -64,12 +64,35 @@ a{
 /*    MENU    ***************************************
 *************************************************/
 
-#navbar-menu a,
-#navbar-menu a:focus {
+#navbar-menu>ul>li>a,
+#navbar-menu>ul>li>a:focus {
 	color: white !important;
 }
 
-#navbar-menu a:hover {
+.dropdown-menu>li>a{
+	color: black !important;
+	background: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+@media screen and (max-width: 768px){
+	.dropdown-menu>li>a{
+		background: none;
+	}
+	.dropdown-menu>li>a:hover{
+		background: rgba(0,0,0,0.2) !important;
+	}
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+	background: #00857A !important;
+}
+
+
+#navbar-menu a:hover{
 	color: #030813 !important;
 }
 
@@ -103,7 +126,8 @@ a{
 	border: 0px;
 }
 
-.c-submenu .nav-pills li a {
+.c-submenu .nav-pills li a
+{
   height: 30px;
   line-height: 30px;
   padding-top: 0;
@@ -123,9 +147,13 @@ a{
 	color: white !important;
 }
 
-.c-submenu a:hover{
+.c-submenu a:hover,
+.c-submenu>a:focus
+{
 	color: #030813 !important;
 }
+
+
 
 
 /*************************************************

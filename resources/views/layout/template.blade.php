@@ -44,23 +44,32 @@
                       <li @if($strona=='login') class="active" @endif><a href="/login">Zaloguj</a></li>
     									<li @if($strona=='register') class="active" @endif><a href="/register">Zarejestruj</a></li>
                       @else
-  										<li>
-  										<a href="/profile"> {{ Auth::user()->name }}  </a>
-  										</li>
-  										<li @if($strona=='dodaj') class="active" @endif>
-  										<a href="/dodaj"> Dodaj  </a>
-  										</li>
-  										<li>
-  											<a href="{{ route('logout') }}"
-  												onclick="event.preventDefault();
-  														 document.getElementById('logout-form').submit();">
-  												Wyloguj
-  											</a>
+  										<li class="dropdown">
+  										  <a class="dropdown-toggle"  data-toggle="dropdown"> {{ Auth::user()->name }} <span class="caret"></span> </a>
 
-  											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-  												{{ csrf_field() }}
-  											</form>
+                        <ul class="dropdown-menu">
+                          <li @if($strona=='dodaj') class="active" @endif>
+      										<a href="/dodaj"> Nowy post  </a>
+      										</li>
+                          <li @if($strona=='profil') class="active" @endif>
+      										<a href="/profil"> Twój profil  </a>
+      										</li>
+                          <li class="divider"></li>
+                          <li>
+      											<a href="{{ route('logout') }}"
+      												onclick="event.preventDefault();
+      														 document.getElementById('logout-form').submit();">
+      												Wyloguj
+      											</a>
+
+      											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      												{{ csrf_field() }}
+      											</form>
+      										</li>
+                        </ul>
   										</li>
+
+
   									</ul>
   								</li>
   								@endif
