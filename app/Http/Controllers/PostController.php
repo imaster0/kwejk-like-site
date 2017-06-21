@@ -24,35 +24,6 @@ class PostController extends Controller{
 			return redirect('/');
 		}
 
-		//Nowy post jako obrazek .png
-		private function createNewPost($path, array $data){
-			//tworzymy pusty obrazek, dodajemy tło i ramkę na środek
-			$img = \Image::canvas(768, 500, '#ffffff');
-			$bg = \Image::make('imgs/template/post_text3.png')->resize(768, 500);
-			$img->insert($bg, 'center');
-			$img->save($path);  //zapisujemy na ścieżce $path
-			//otwieramy poprzednio utworzony obrazek
-			$im = imagecreatefrompng ($path);
-			//Topic - dodajemy temat
-			$box = new Box($im);
-			$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
-			$box->setFontColor(new Color(0, 0, 0));
-			$box->setFontSize(40);
-			$box->setBox(50, 50, 768-100, 90);
-			$box->setTextAlign('left', 'top');
-			$box->draw($data["title"]);
-			//Content - dodajemy treść
-			$box = new Box($im);
-			$box->setFontFace('fonts/arial.ttf'); 	// czcionka: zwykły Arial
-			$box->setFontColor(new Color(0, 0, 0));
-			$box->setFontSize(24);
-			$box->setBox(50, 100, 768-100, 500-200);
-			$box->setTextAlign('center', 'center');
-			$box->draw($data["content"]);
-			imagepng($im, $path); //zapisanie na ścieżce $path
-		}
-
-
 		// Sprawdzanie posta
 	  protected function validator(array $data){
         return Validator::make($data, [
@@ -77,6 +48,62 @@ class PostController extends Controller{
     }
 
 
+		//Nowy post jako obrazek .png
+		private function createNewPost($path, array $data){
+			//tworzymy pusty obrazek, dodajemy tło i ramkę na środek
+			$img = \Image::canvas(768, 500, '#ffffff');
+			$bg = \Image::make('imgs/template/post_text3.png')->fit(768, 500);
+			$img->insert($bg, 'center');
+			if(isset($data['image'])){
+				$img2 = \Image::make($data['image'])->fit(768, 500);
+				$ramka = \Image::make('imgs/template/post_text3p.png')->fit(768, 500);
+				$img->insert($img2, 'center');
+				$img->insert($ramka, 'center');
+			}
+			$img->save($path);  //zapisujemy na ścieżce $path
+			//otwieramy poprzednio utworzony obrazek
+			$im = imagecreatefrompng ($path);
+
+			if(isset($data['image'])){
+				//Topic - dodajemy temat
+				$box = new Box($im);
+				$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
+				$box->setFontColor(new Color(255, 255, 255));
+				$box->setBackgroundColor(new Color(0, 0, 0));
+				$box->setFontSize(40);
+				$box->setBox(50, 280, 768-100, 90);
+				$box->setTextAlign('left', 'top');
+				$box->draw($data["title"]);
+				//Content - dodajemy treść
+				$box = new Box($im);
+				$box->setFontFace('fonts/arial.ttf'); 	// czcionka: zwykły Arial
+				$box->setFontColor(new Color(255, 255, 255));
+				$box->setBackgroundColor(new Color(0, 0, 0));
+				$box->setFontSize(24);
+				$box->setBox(50, 335, 768-100, 90);
+				$box->setTextAlign('left', 'top');
+				$box->draw($data["content"]);
+			}
+			else{
+				//Topic - dodajemy temat
+				$box = new Box($im);
+				$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
+				$box->setFontColor(new Color(0, 0, 0));
+				$box->setFontSize(40);
+				$box->setBox(50, 50, 768-100, 90);
+				$box->setTextAlign('left', 'top');
+				$box->draw($data["title"]);
+				//Content - dodajemy treść
+				$box = new Box($im);
+				$box->setFontFace('fonts/arial.ttf'); 	// czcionka: zwykły Arial
+				$box->setFontColor(new Color(0, 0, 0));
+				$box->setFontSize(24);
+				$box->setBox(50, 100, 768-100, 500-200);
+				$box->setTextAlign('center', 'center');
+				$box->draw($data["content"]);
+			}
+			imagepng($im, $path); //zapisanie na ścieżce $path
+		}
 
 		//Dodawanie tagów do posta
 		protected function addTags(array $data){

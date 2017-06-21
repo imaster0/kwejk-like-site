@@ -10,7 +10,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">Dodaj</div>
             <div class="panel-body">
-  						<form class="form-horizontal" role="form" method="POST" action="{{ route('dodaj') }}">
+  						<form class="form-horizontal" role="form" method="POST" action="{{ route('dodaj') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row container-fluid">
                   <?php $tags = App\Tag::all(); ?>
@@ -53,6 +53,10 @@
                           @endif
                     </div>
                 </div>
+<!-- dodaj obrazek -->
+ Obrazek <input type="file" name="image" id="image">
+<!--- -->
+
 
     						<div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
