@@ -54,7 +54,18 @@
                     </div>
                 </div>
 <!-- dodaj obrazek -->
- Obrazek <input type="file" name="image" id="image">
+               <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                   <label for="image" class="col-md-2 control-label">Obrazek</label>
+
+                   <div class="col-md-8">
+                     <input type="file" name="image" id="image">
+                         @if ($errors->has('image'))
+                             <span class="help-block">
+                                 <strong>{{ $errors->first('image') }}</strong>
+                             </span>
+                         @endif
+                   </div>
+               </div>
 <!--- -->
 
 
