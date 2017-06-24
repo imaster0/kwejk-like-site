@@ -27,8 +27,8 @@ class PostController extends Controller{
 		// Sprawdzanie posta
 	  protected function validator(array $data){
         return Validator::make($data, [
-            'title' => 'required|string|max:50',
-            'content' => 'required|string|max:600',
+            'title' => 'required|string|max:100',
+            'content' => 'required|string|max:1000',
         ]);
     }
 
@@ -47,63 +47,61 @@ class PostController extends Controller{
 			$this->createNewPost($path, $data);
     }
 
+		private function calculateText($font, $font_size, $img_width, $margin, $text){
+			//explode text by words
+			$text_a = explode(' ', $text);
+			$text_new = '';
+			foreach($text_a as $word){
+			    //Create a new text, add the word, and calculate the parameters of the text
+			    $box = imagettfbbox($font_size, 0, $font, $text_new.' '.$word);
+			    //if the line fits to the specified img_width, then add the word with a space, if not then add word with new line
+			    if($box[2] > $img_width - $margin*2){
+			        $text_new .= "\n".$word;
+			    } else {
+			        $text_new .= " ".$word;
+			    }
+			}
+			//trip spaces
+			for($x = 1; $x <= 7; $x += 2) $box[$x] += $margin+$font_size;
+
+			return array($box, trim($text_new));
+		}
+
 
 		//Nowy post jako obrazek .png
 		private function createNewPost($path, array $data){
-			//tworzymy pusty obrazek, dodajemy tło i ramkę na środek
-			$img = \Image::canvas(768, 500, '#ffffff');
-			$bg = \Image::make('imgs/template/post_text3.png')->fit(768, 500);
-			$img->insert($bg, 'center');
-			if(isset($data['image'])){
-				$img2 = \Image::make($data['image'])->fit(768, 500);
-				$ramka = \Image::make('imgs/template/post_text3p.png')->fit(768, 500);
-				$img->insert($img2, 'center');
-				$img->insert($ramka, 'center');
-			}
-			$img->save($path);  //zapisujemy na ścieżce $path
-			//otwieramy poprzednio utworzony obrazek
-			$im = imagecreatefrompng ($path);
+			//obliczamy wielkość tekstu
+			$content_size = 30 - strlen($data["content"])*(30-12)/1000;
+			$title_size = 40 - strlen($data["title"])*(40-24)/100;
+			//liczymy miejsce zajmowane przez tekst
+			$calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 50, $data["content"]);
+			$calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 50, $data["title"]);
+			for($x = 1; $x <= 7; $x += 2) $calc_content[0][$x] += $calc_title[0][1];
+			$post_height =  $calc_content[0][1] + 100;
 
-			if(isset($data['image'])){
-				//Topic - dodajemy temat
-				$box = new Box($im);
-				$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
-				$box->setFontColor(new Color(255, 255, 255));
-				$box->setBackgroundColor(new Color(0, 0, 0));
-				$box->setFontSize(40);
-				$box->setBox(50, 280, 768-100, 90);
-				$box->setTextAlign('left', 'top');
-				$box->draw($data["title"]);
-				//Content - dodajemy treść
-				$box = new Box($im);
-				$box->setFontFace('fonts/arial.ttf'); 	// czcionka: zwykły Arial
-				$box->setFontColor(new Color(255, 255, 255));
-				$box->setBackgroundColor(new Color(0, 0, 0));
-				$box->setFontSize(24);
-				$box->setBox(50, 335, 768-100, 90);
-				$box->setTextAlign('left', 'top');
-				$box->draw($data["content"]);
-			}
-			else{
-				//Topic - dodajemy temat
-				$box = new Box($im);
-				$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
-				$box->setFontColor(new Color(0, 0, 0));
-				$box->setFontSize(36);
-				$box->setBox(50, 50, 768-100, 90);
-				$box->setTextAlign('left', 'top');
-				$box->draw($data["title"]);
-				//Content - dodajemy treść
-				$box = new Box($im);
-				$box->setFontFace('fonts/arial.ttf'); 	// czcionka: zwykły Arial
-				$box->setFontColor(new Color(0, 0, 0));
-				$box->setFontSize(24);
-				$box->setBox(50, 100, 768-100, 500-200);
-				$box->setTextAlign('center', 'center');
-				$box->draw($data["content"]);
-			}
-			imagepng($im, $path); //zapisanie na ścieżce $path
+			$img = imagecreatetruecolor(768, $post_height);
+
+			$white_color = imagecolorallocate ($img, 255, 255, 255);
+			$black_color = imagecolorallocate ($img, 0, 0, 0);
+
+			//ramka
+			$bg = imagefilledrectangle($img, 0, 0, 768, $post_height, $white_color);
+			$top_border = imagefilledrectangle($img, 0, 0, 768, 5, $black_color);
+			$bottom_border = imagefilledrectangle($img, 0, $post_height-6, 768, $post_height, $black_color);
+			$left_border= imagefilledrectangle($img, 0, 0, 5, $post_height, $black_color);
+			$right_border= imagefilledrectangle($img, 762, 0, 768, $post_height, $black_color);
+
+			//logo
+			$logo = imagecreatefrompng("imgs/template/logo_post.png");
+			imagecopy( $img , $logo , (768-112)/2, $post_height-27, 0, 0, 112, 27);
+
+			//generowanie tekstu
+			imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 50, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
+			imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 50, $calc_content[0][7]+24, $black_color, "fonts/arial.ttf", $calc_content[1]);
+			imagepng($img, $path);
+			imagedestroy($img);
 		}
+
 
 		//Dodawanie tagów do posta
 		protected function addTags(array $data){

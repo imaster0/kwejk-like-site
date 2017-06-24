@@ -63,6 +63,9 @@ a{
 /*************************************************
 /*    MENU    ***************************************
 *************************************************/
+#navbar-menu a{
+	cursor: pointer;
+}
 
 #navbar-menu>ul>li>a,
 #navbar-menu>ul>li>a:focus {
@@ -207,7 +210,7 @@ a{
 	left: 0px;
 	right: 0px;
 	top: 7px;
-	background: black;
+	background: #030813;
 	color: white;
 }
 
