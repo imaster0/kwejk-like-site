@@ -4,6 +4,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel='shortcut icon' type='image/png' href='/favicon.png' />
 
       <title>cotynato.eu - najlepsze pomysły i lajfhaki w sieci</title>
 
@@ -44,14 +45,14 @@
                       <li @if($strona=='login') class="active" @endif><a href="/login">Zaloguj</a></li>
     									<li @if($strona=='register') class="active" @endif><a href="/register">Zarejestruj</a></li>
                       @else
-  										<li class="dropdown">
+  										<li class="dropdown @if($strona=='dodaj' or $strona=='profil') active @endif">
   										  <a class="dropdown-toggle"  data-toggle="dropdown"> {{ Auth::user()->name }} <span class="caret"></span> </a>
 
                         <ul class="dropdown-menu">
-                          <li @if($strona=='dodaj') class="active" @endif>
+                          <li>
       										<a href="/dodaj"> Nowy post  </a>
       										</li>
-                          <li @if($strona=='profil') class="active" @endif>
+                          <li>
       										<a href="/profil"> Twój profil  </a>
       										</li>
                           <li class="divider"></li>

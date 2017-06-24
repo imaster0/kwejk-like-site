@@ -30,6 +30,10 @@ Route::get('/q={tag?}', function($tag = 'all') {
 	return view('mainpage', ['tag' =>$tag]);
 });
 
+Route::get('/profil', function(){
+	return view('profil.profil');
+});
+
 Route::get('/', function () {
 	$tag = 'all';
     return view('mainpage', ['tag' =>$tag]);

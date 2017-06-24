@@ -89,7 +89,7 @@ class PostController extends Controller{
 				$box = new Box($im);
 				$box->setFontFace('fonts/arialbd.ttf'); // czcionka: pogrubiony Arial
 				$box->setFontColor(new Color(0, 0, 0));
-				$box->setFontSize(40);
+				$box->setFontSize(36);
 				$box->setBox(50, 50, 768-100, 90);
 				$box->setTextAlign('left', 'top');
 				$box->draw($data["title"]);

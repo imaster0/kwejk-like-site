@@ -115,7 +115,7 @@ a{
 	color: white;
 }
 
-.c-menu-first li.active a{
+.c-menu-first li.active>a{
 	background: rgba(0, 0, 0, 0.2) !important;
 }
 
