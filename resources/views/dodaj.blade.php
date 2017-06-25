@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+
+@if (session('mess'))
+    <div class="alert alert-info">
+        {{ session('mess') }}
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="row">
           <div class="panel panel-default">
@@ -31,7 +38,7 @@
                     <label for="title" class="col-md-2 control-label">Tytuł</label>
 
                     <div class="col-md-8">
-                        <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
+                        <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" autofocus>
 
                         @if ($errors->has('title'))
                             <span class="help-block">
@@ -45,7 +52,7 @@
                     <label for="title" class="col-md-2 control-label">Treść</label>
 
                     <div class="col-md-8">
-				                   <textarea id="content" name="content" type="text" class="form-control" rows="5" value="{{ old('content') }}" required autofocus></textarea>
+				                   <textarea id="content" name="content" type="text" class="form-control" rows="5" value="{{ old('content') }}" autofocus></textarea>
                           @if ($errors->has('content'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('content') }}</strong>

@@ -53,7 +53,7 @@
       										<a href="/dodaj"> Nowy post  </a>
       										</li>
                           <li>
-      										<a href="/profil"> Twój profil  </a>
+      										<a href="/profil"> Mój profil  </a>
       										</li>
                           <li class="divider"></li>
                           <li>

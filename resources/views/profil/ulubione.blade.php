@@ -6,7 +6,20 @@
 @endsection
 
 @section('ndbar')
+<div class="c-submenu row">
+	<div class="container">
 
+			<?php $tags = App\Tag::all(); ?>
+
+
+			<ul class="nav nav-pills">
+				<li <?php if($tag == 'all') echo ' class="active" '; ?> ><a href="/">#wszystko</a></li>
+				@foreach($tags as $t)
+					<li <?php if($tag == $t->name) echo ' class="active" '; ?> ><a href="/q={{$t->name}}">#{{$t->name}}</a></li>
+				@endforeach
+			</ul>
+		</div>
+</div>
 @endsection
 
 @section('content')
@@ -14,65 +27,73 @@
 
 
 	<!--  CONTENT -->
-	<div class="container-fluid">
-	    <div class="row">
-          <div class="panel panel-default">
-            	<div class="panel-heading">Twój profil</div>
+	<!--  CONTENT -->
+	<div id="content">
+			<!-- POSTY -->
+			<?php
 
-							<div class="panel-body">
-	                <form class="form-horizontal" role="form" method="POST">
-	                    {{ csrf_field() }}
-											<!-- do poprawienia -->
-											<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-													<label for="name" class="col-md-4 control-label">Stare hasło</label>
+			if($tag =='all')  $posts = App\Post::where('user_id', \Auth::User()->id)->orderBy('created_at', 'desc')->paginate(10);
+			else $posts = App\Tag::where('name', $tag)->first()->posts()->where('user_id', \Auth::User()->id)->orderBy('created_at', 'desc')->paginate(10);
+			?>
 
-													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
-															@if ($errors->has('name'))
-																	<span class="help-block">
-																			<strong>{{ $errors->first('name') }}</strong>
-																	</span>
-															@endif
-													</div>
-											</div>
-											<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-													<label for="name" class="col-md-4 control-label">Nowe hasło</label>
 
-													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
-															@if ($errors->has('name'))
-																	<span class="help-block">
-																			<strong>{{ $errors->first('name') }}</strong>
-																	</span>
-															@endif
-													</div>
-											</div>
-											<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-													<label for="name" class="col-md-4 control-label">Powtórz nowe hasło</label>
 
-													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+			@foreach($posts as $post)
 
-															@if ($errors->has('name'))
-																	<span class="help-block">
-																			<strong>{{ $errors->first('name') }}</strong>
-																	</span>
-															@endif
-													</div>
-											</div>
-											<div class="form-group">
-													<div class="col-md-6 col-md-offset-4">
-															<button type="submit" class="btn btn-primary">
-																	Zmień hasło
-															</button>
-													</div>
-											</div>
-											<!-- -->
-	                </form>
-	            </div>
-          </div>
-	    </div>
+					<div class="c-post">
+						<div class="row c-post-top">
+							<div class="col-md-9 col-xs-8">
+								<div class="tag-bar">
+
+									<?php
+										$tags = $post->tags()->get();
+									?>
+
+
+									<b>#na_temat</b>
+									@foreach($tags as $t)
+									 #{{$t->name}}
+									@endforeach
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-4">
+								<div class="c-post-author">
+									{{$post->created_at->format('d/m/Y')}}<br/>
+									{{$post->user->name}}
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+						<div class="c-post-image"><img src="{{asset($post->path)}}"></img></div>
+
+						<!-- Panel dolny posta  -->
+
+							<div class="c-post-panel">
+								<!-- <div class="row "> <h1> A Ty? Co uważasz? </h1> </div> -->
+								<!-- Ocena: {{ $post->up }}/{{ $post->down }}
+								<button class="btn btn-success"><span class="glyphicon glyphicon-chevron-up"></span></button>
+								<button class="btn btn-danger"><span class="glyphicon glyphicon-chevron-down"></span></button>
+								<button class="btn btn-info btn-comment"><span class="glyphicon glyphicon-comment"></span></button>
+								-->
+								<div>
+									<ul class="list-inline row">
+										<li class="col-xs-offset-1 col-xs-2"><img src="imgs/ikonki/active/odpowiedz.png" /></li>
+										<li class="col-xs-2"><img src="{{asset('imgs/ikonki/active/dodaj.png')}}" /></li>
+										<li class="col-xs-2"><img src="{{asset('imgs/ikonki/active/tak.png')}}" /></li>
+										<li class="col-xs-2"><img src="{{asset('imgs/ikonki/active/nie.png')}}" /></li>
+										<li class="col-xs-2"><img src="{{asset('imgs/ikonki/active/udostepnij.png')}}" /></li>
+									</ul>
+								</div>
+						</div>
+					</div>
+			@endforeach
+				<div class="text-center"> {{ $posts->links() }} </div>
 	</div>
 @endsection

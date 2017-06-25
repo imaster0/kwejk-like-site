@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\GDText\Box;
 use App\GDText\Color;
 
@@ -14,6 +15,17 @@ class PostController extends Controller{
 
 	  // Dodawanie nowego posta
 		public function add(Request $request){
+
+			$dt = new DateTime();
+			$diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
+
+			// if($diff < 120){
+			// 	return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
+			// }
+
+
+			\Auth::User()->last_post = $dt;
+			\Auth::User()->save();
 			// sprawdzanie, czy podano tytuł i treść
 			$this->validator($request->all())->validate();
 			// tworzenie
@@ -27,8 +39,8 @@ class PostController extends Controller{
 		// Sprawdzanie posta
 	  protected function validator(array $data){
         return Validator::make($data, [
-            'title' => 'required|string|max:100',
-            'content' => 'required|string|max:1000',
+            'title' => 'nullable|string|max:100',
+            'content' => 'nullable|string|max:1000',
 						'image' => 'image|mimes:jpg,jpeg,png',
         ]);
     }
@@ -75,11 +87,18 @@ class PostController extends Controller{
 			if(isset($data["image"])){
 				//obrazek pole: 768x432
 				//obliczamy wielkość tekstu
-				$content_size = 14 - strlen($data["content"])*(16-12)/1000;
-				$title_size = 25 - strlen($data["title"])*(25-16)/100;
+				//zeruj
+				$title_size = $content_size = 0;
+
+				for($x = 1; $x <= 7; $x++){
+					$calc_content[0][$x] = 0;
+					$calc_title[0][$x] = 0;
+				}
+				if(isset($data["content"])) $content_size = 14 - strlen($data["content"])*(16-12)/1000;
+				if(isset($data["title"])) $title_size = 25 - strlen($data["title"])*(25-16)/100;
 				//liczymy miejsce zajmowane przez tekst
-				$calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 25, $data["content"]);
-				$calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 25, $data["title"]);
+				if(isset($data["content"])) $calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 25, $data["content"]);
+				if(isset($data["title"]))  $calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 25, $data["title"]);
 				for($x = 1; $x <= 7; $x += 2) $calc_content[0][$x] += $calc_title[0][1];
 
 				$pic_size = getimagesize($data["image"]->path());
@@ -92,7 +111,9 @@ class PostController extends Controller{
 					$calc_title[0][$x] += $pic_height;
 					$calc_content[0][$x] += $pic_height;
 				}
-				$post_height =  $calc_content[0][1] + 50;
+
+				$post_height =  $calc_content[0][1];
+				if($title_size > 0 || $content_size > 0)$post_height =  $calc_content[0][1] + 50;
 
 				$img = imagecreatetruecolor(768, $post_height);
 
@@ -109,7 +130,7 @@ class PostController extends Controller{
 
 
 				//ramka
-				$bg = imagefilledrectangle($img, 0, $pic_height, 768, $post_height, $white_color);
+				if(isset($data["title"]) || isset($data["content"])) $bg = imagefilledrectangle($img, 0, $pic_height, 768, $post_height, $white_color);
 				$top_border = imagefilledrectangle($img, 0, 0, 768, 5, $black_color);
 				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, 768, $post_height, $black_color);
 				$left_border= imagefilledrectangle($img, 0, 0, 5, $post_height, $black_color);
@@ -120,15 +141,15 @@ class PostController extends Controller{
 				imagecopy( $img , $logo , (768-112)/2, $post_height-27, 0, 0, 112, 27);
 
 				//generowanie tekstu
-				imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 25, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
-				imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 25, $calc_content[0][7]+24, $black_color, "fonts/arial.ttf", $calc_content[1]);
+				if(isset($data["title"])) imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 25, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
+				if(isset($data["content"])) imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 25, $calc_content[0][7]+24, $black_color, "fonts/arial.ttf", $calc_content[1]);
 				imagepng($img, $path);
 				imagedestroy($img);
 			}
 			else{
 				//obliczamy wielkość tekstu
-				$content_size = 30 - strlen($data["content"])*(30-12)/1000;
-				$title_size = 40 - strlen($data["title"])*(40-24)/100;
+				$content_size = 26 - strlen($data["content"])*(26-14)/1000;
+				$title_size = 40 - strlen($data["title"])*(40-26)/100;
 				//liczymy miejsce zajmowane przez tekst
 				$calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 50, $data["content"]);
 				$calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 50, $data["title"]);
