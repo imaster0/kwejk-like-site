@@ -14,10 +14,7 @@
       <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.css') }}" type="text/css">
 	    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
 
-  		<!-- Scripts -->
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  		<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-  		<script src="{{ asset('js/app.js') }}"></script>
+
 
     </head>
     <body>
@@ -40,6 +37,7 @@
                     @yield('strona')   <!-- jaka to strona -->
   									<ul class="nav navbar-nav navbar-right c-menu-first" role="menu">
                       <li @if($strona=='glowna') class="active" @endif><a href="/">Strona Główna</a></li>
+                      <li @if($strona=='top') class="active" @endif><a href="/top">TOP</a></li>
                       <li @if($strona=='poczekalnia') class="active" @endif><a href="/poczekalnia">Poczekalnia</a></li>
                       @if(Auth::guest())
                       <li @if($strona=='login') class="active" @endif><a href="/login">Zaloguj</a></li>
@@ -98,4 +96,10 @@
   			</footer>
   		</div>
     </body>
+
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </html>

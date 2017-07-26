@@ -20,11 +20,12 @@
             	<div class="panel-heading">Mój profil ({{ Auth::User()->name }})</div>
 
 							<div class="panel-body text-center">
-	                <ul>
-										<li><a href="profil/ulubione"> Moje posty </a></li>
-										<li><a href="profil/pwchange"> Zmień hasło </a></li>
-										<li><a href="profil/emchange"> Zmień email </a></li>
-										<li><a href="#"> Usuń konto </a></li>
+	                <ul class="list-group">
+										<li class="list-group-item"><a href="profil/moje"> Moje posty </a></li>
+										<li class="list-group-item"><a href="profil/ulubione"> Ulubione posty </a></li>
+										<li class="list-group-item"><a href="profil/pwchange"> Zmień hasło </a></li>
+										<li class="list-group-item"><a href="profil/emchange"> Zmień email </a></li>
+										<li class="list-group-item"><a href="#"> Usuń konto </a></li>
 									</ul>
 	            </div>
           </div>

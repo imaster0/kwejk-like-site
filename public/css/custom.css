@@ -53,9 +53,9 @@ a{
 	height: 100%;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 689px){
 	.main_content{
-		width: 768px;
+		width: 678px;
 		margin: 0 auto;
 	}
 }
@@ -193,8 +193,6 @@ a{
 .c-post{
 	display: block;
 	position: relative;
-	background: white;
-	color: #030813;
 	margin: 50px 0px; /* ===================> ODSTĘPY POMIĘDZY POSTAMI */
 	overflow: hidden;
 		font-size: 22px;
@@ -210,8 +208,8 @@ a{
 	left: 0px;
 	right: 0px;
 	top: 7px;
-	background: #030813;
-	color: white;
+	background: #000;
+	color: #888;
 }
 
 .c-post-author{
@@ -236,7 +234,7 @@ a{
 	font-weight: bold;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 689px){
 	.c-post{
 		position: relative;
 		background: white;
@@ -249,7 +247,9 @@ a{
 }
 
 .c-post-image{
-	width: 100%;
+	position: relative;
+	background: #000;
+	text-align: center;
 }
 
 .c-post-image img{
@@ -258,17 +258,79 @@ a{
 
 .c-post-panel{
 	min-height: 60px;
-	background: #030813;
-	color: white;
-	text-align: center;
+	background: #000;
+	color: #888;
 	width: 100%;
 	bottom: 0px;
-	padding: 10px;
+	padding: 15px;
+}
+
+.c-post-panel .list-inline{
+	float: left;
+	width: 50%;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.list-group-item{
+	background: none;
 }
 
 .c-post-panel h1{
 		font-size: 42px;
 		font-weight: bold;
+}
+
+
+.post-button{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.post-button path{
+	fill: #fefefe;
+	opacity: 0.6;
+	transition: opacity 0.225s;
+}
+
+.post-button:hover path{
+	opacity: 1;
+}
+
+.post-button circle{
+	fill: white;
+	opacity: 0;
+	transition: opacity  0.225s;
+}
+
+.post-button:active circle{
+	opacity: 0.2;
+}
+
+.c-post-panel li{
+	position: relative;
+}
+
+.post-btn-tag{
+}
+
+.onclickit{
+	position: absolute;
+	padding: 20px;
+	bottom: 0;
+	height: 80px;
+	opacity: 0.73;
+	background: black;
+	color: lightgrey;
+	text-align: center;
+	width: 100%;
+}
+
+.c-post-image:hover .onclickit{
+	color: white;
 }
 
 
@@ -325,6 +387,15 @@ form textarea{
 /*************************************************
 /* STOPKA *****************************************
 *************************************************/
+.pagination>li.active>span{
+	background: #00857A;
+}
+
+.pagination>li.active:hover>span{
+	background: #00756A;
+}
+
+
 #footer {
 	position:absolute;
 	width:100%;

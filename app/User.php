@@ -32,4 +32,8 @@ class User extends Authenticatable
 		return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
 	}
 
+  //ulubione
+  public function ulubione(){
+    return $this->hasMany('App\Ulubione');
+  }
 }

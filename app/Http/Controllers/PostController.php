@@ -85,9 +85,11 @@ class PostController extends Controller{
 		private function createNewPost($path, array $data){
 
 			if(isset($data["image"])){
-				//obrazek pole: 768x432
+				//obrazek pole: szer $post_width // nowy: szer 555px
 				//obliczamy wielkość tekstu
 				//zeruj
+				$post_width = 678;
+
 				$title_size = $content_size = 0;
 
 				for($x = 1; $x <= 7; $x++){
@@ -97,15 +99,20 @@ class PostController extends Controller{
 				if(isset($data["content"])) $content_size = 14 - strlen($data["content"])*(16-12)/1000;
 				if(isset($data["title"])) $title_size = 25 - strlen($data["title"])*(25-16)/100;
 				//liczymy miejsce zajmowane przez tekst
-				if(isset($data["content"])) $calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 25, $data["content"]);
-				if(isset($data["title"]))  $calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 25, $data["title"]);
+				if(isset($data["content"])) $calc_content = $this->calculateText('fonts/arial.ttf', $content_size, $post_width, 25, $data["content"]);
+				if(isset($data["title"]))  $calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, $post_width, 25, $data["title"]);
 				for($x = 1; $x <= 7; $x += 2) $calc_content[0][$x] += $calc_title[0][1];
 
 				$pic_size = getimagesize($data["image"]->path());
 				// width/height
 				$wh = $pic_size[0]/$pic_size[1];
-				$pic_width = 758;
-				$pic_height = 758/$wh;
+				$pic_width = ($post_width - 10);
+				$pic_height = $pic_width/$wh;
+
+				// if($pic_width > $pic_size[0]){
+				// 	$pic_width = $pic_size[0];
+				// 	$pic_height = $pic_size[1];
+				// }
 
 				for($x = 1; $x <= 7; $x += 2){
 					$calc_title[0][$x] += $pic_height;
@@ -114,31 +121,36 @@ class PostController extends Controller{
 
 				$post_height =  $calc_content[0][1];
 				if($title_size > 0 || $content_size > 0)$post_height =  $calc_content[0][1] + 50;
+				$post_height += 27;
 
-				$img = imagecreatetruecolor(768, $post_height);
+				$img = imagecreatetruecolor($post_width, $post_height);
 
 				$white_color = imagecolorallocate ($img, 255, 255, 255);
+				$grey_color = imagecolorallocate ($img, 100, 100, 100);
 				$black_color = imagecolorallocate ($img, 0, 0, 0);
+
 
 				//obrazek
 				$extension = $data["image"]->extension();
 				if($extension == "jpeg" || $extension == "jpg") $picture = imagecreatefromjpeg($data["image"]->path());
 				else if($extension == "png") $picture = imagecreatefrompng($data["image"]->path());
-				else{}
+				else{ return;}
 
-				imagecopyresized($img, $picture, (768-$pic_width)/2, 5, 0, 0, $pic_width, $pic_height, $pic_size[0], $pic_size[1]);
 
+				imagecopyresized($img, $picture, ($post_width-$pic_width)/2, 5, 0, 0, $pic_width, $pic_height, $pic_size[0], $pic_size[1]);
 
 				//ramka
-				if(isset($data["title"]) || isset($data["content"])) $bg = imagefilledrectangle($img, 0, $pic_height, 768, $post_height, $white_color);
-				$top_border = imagefilledrectangle($img, 0, 0, 768, 5, $black_color);
-				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, 768, $post_height, $black_color);
+				if(isset($data["title"]) || isset($data["content"])) $bg = imagefilledrectangle($img, 0, $pic_height, $post_width, $post_height, $white_color);
+
+				$bg = imagefilledrectangle($img, 0, $post_height-27, $post_width, $post_height, $black_color);
+				$top_border = imagefilledrectangle($img, 0, 0, $post_width, 5, $black_color);
+				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, $post_width, $post_height, $black_color);
 				$left_border= imagefilledrectangle($img, 0, 0, 5, $post_height, $black_color);
-				$right_border= imagefilledrectangle($img, 762, 0, 768, $post_height, $black_color);
+				$right_border= imagefilledrectangle($img, $post_width-6, 0, $post_width, $post_height, $black_color);
 
 				//logo
 				$logo = imagecreatefrompng("imgs/template/logo_post.png");
-				imagecopy( $img , $logo , (768-112)/2, $post_height-27, 0, 0, 112, 27);
+				imagecopy( $img , $logo , ($post_width-112)/2, $post_height-27, 0, 0, 112, 27);
 
 				//generowanie tekstu
 				if(isset($data["title"])) imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 25, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
@@ -151,26 +163,28 @@ class PostController extends Controller{
 				$content_size = 26 - strlen($data["content"])*(26-14)/1000;
 				$title_size = 40 - strlen($data["title"])*(40-26)/100;
 				//liczymy miejsce zajmowane przez tekst
-				$calc_content = $this->calculateText('fonts/arial.ttf', $content_size, 768, 50, $data["content"]);
-				$calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, 768, 50, $data["title"]);
+				$calc_content = $this->calculateText('fonts/arial.ttf', $content_size, $post_width, 50, $data["content"]);
+				$calc_title = $this->calculateText('fonts/arialbd.ttf', $title_size, $post_width, 50, $data["title"]);
 				for($x = 1; $x <= 7; $x += 2) $calc_content[0][$x] += $calc_title[0][1];
 				$post_height =  $calc_content[0][1] + 100;
+				$post_height += 27;
 
-				$img = imagecreatetruecolor(768, $post_height);
+				$img = imagecreatetruecolor($post_width, $post_height);
 
 				$white_color = imagecolorallocate ($img, 255, 255, 255);
 				$black_color = imagecolorallocate ($img, 0, 0, 0);
 
 				//ramka
-				$bg = imagefilledrectangle($img, 0, 0, 768, $post_height, $white_color);
-				$top_border = imagefilledrectangle($img, 0, 0, 768, 5, $black_color);
-				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, 768, $post_height, $black_color);
+				$bg = imagefilledrectangle($img, 0, 0, $post_width, $post_height, $white_color);
+				$bg = imagefilledrectangle($img, 0, $post_height-27, $post_width, $post_height, $black_color);
+				$top_border = imagefilledrectangle($img, 0, 0, $post_width, 5, $black_color);
+				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, $post_width, $post_height, $black_color);
 				$left_border= imagefilledrectangle($img, 0, 0, 5, $post_height, $black_color);
-				$right_border= imagefilledrectangle($img, 762, 0, 768, $post_height, $black_color);
+				$right_border= imagefilledrectangle($img, 762, 0, $post_width, $post_height, $black_color);
 
 				//logo
 				$logo = imagecreatefrompng("imgs/template/logo_post.png");
-				imagecopy( $img , $logo , (768-112)/2, $post_height-27, 0, 0, 112, 27);
+				imagecopy( $img , $logo , ($post_width-112)/2, $post_height-27, 0, 0, 112, 27);
 
 				//generowanie tekstu
 				imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 50, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
@@ -189,5 +203,12 @@ class PostController extends Controller{
 					'tag_id' => \App\Tag::where('name', $d)->first()->id,
 				]);
 			}
+		}
+
+		//userform
+
+		public function userform(Request $request){
+			print_r($request->all());
+			die();
 		}
 }

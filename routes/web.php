@@ -26,23 +26,20 @@ Route::get('/users', function(){
 });
 //-------------
 
-
-
-
-Route::get('/q={tag?}', function($tag = 'all') {
-	return view('mainpage', ['tag' =>$tag]);
-});
-
-
 Route::middleware(['auth'])->group(function(){
 	//profil
 	Route::get('/profil', function(){
 		return view('profil.profil');
 	});
-	Route::get('/profil/ulubione', function(){
-		$tag = 'all';
-		return view('profil.ulubione', ['tag' => $tag]);
+
+	Route::get('/profil/moje', function(){
+		return view('profil.moje');
 	});
+
+	Route::get('/profil/ulubione', function(){
+		return view('profil.ulubione');
+	});
+
 	Route::get('/profil/pwchange', function(){
 		return view('profil.change_password');
 	});
@@ -55,19 +52,26 @@ Route::middleware(['auth'])->group(function(){
 	})->name('dodaj');
 	// obsługa formularza dodawania posta
 	Route::post('dodaj', 'PostController@add');
+
+	Route::post('user/{option?}/{name?}', 'PostPanelController@GetOperation');
 });
 
 
-Route::get('/', function () {
-	$tag = 'all';
-    return view('mainpage', ['tag' =>$tag]);
-});
+//--- podstrony z postami
 
-// /poczekalnia
+// ALL
+Route::get('/', function(){
+	return view('mainpage');
+});
+// TOP
+Route::get('top', function(){
+	return view('top');
+});
+// POCZEKALNIA
 Route:: get('poczekalnia', function(){
-	$tag = 'all';
-	return view('poczekalnia', ['tag' => $tag]);
+	return view('poczekalnia');
 });
+
 
 
 //LOGOWANIE, REJESTRACJA

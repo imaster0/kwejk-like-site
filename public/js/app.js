@@ -19,4 +19,44 @@ $(function() { //document onload
 			img.parent().addClass('badge-success');
 		}
 	});
+
+
+
+
+	// OPCJA 'ROZWIŃ'
+	$('.c-post-image>img').on('load', function(){
+		let wholeImg = $(this).height();
+
+		if(wholeImg > 800){
+			$(this).parent().css('max-height', '600px');
+			$(this).parent().css('overflow', 'hidden');
+			var sth = $(this).parent().append("<div class='onclickit'>ROZWIŃ</div>");
+			$(sth).on('click', function(){
+				$(this).animate({"max-height": wholeImg}, 633, function(){});
+				$(this).children('.onclickit').css('display', 'none');
+			});
+		}
+	});
+
+	//POSTY
+	$('.pst-btn').on('click', function(ev){
+		var btn = $(this);
+		var btnid = btn.attr('id');
+		$.ajax({
+			method: 'post',
+			url: "user/" + btnid + "/" + btn.attr('name'),
+			data: { _token: token}
+		})
+		.done(function(data){
+			// DO ZROBIENIA - odśwież dane na pasku
+
+			if(btnid == "like" || btnid == "dislike"){
+				$('#like-btn-'+btn.attr('name')).text(data[0]);
+				$('#dislike-btn-'+btn.attr('name')).text(data[1]);
+			}
+		});
+
+		ev.preventDefault();
+	});
+
 });
