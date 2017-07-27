@@ -34,6 +34,6 @@ class User extends Authenticatable
 
   //ulubione
   public function ulubione(){
-    return $this->hasMany('App\Ulubione');
+    return $this->belongsToMany('App\Post', 'ulubiones', 'user_id', 'post_id');
   }
 }

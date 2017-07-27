@@ -27,7 +27,7 @@
 													<label for="name" class="col-md-4 control-label">Stare hasło</label>
 
 													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+															<input id="name" type="password" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
 															@if ($errors->has('name'))
 																	<span class="help-block">
@@ -40,7 +40,7 @@
 													<label for="name" class="col-md-4 control-label">Nowe hasło</label>
 
 													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+															<input id="name" type="password" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
 															@if ($errors->has('name'))
 																	<span class="help-block">
@@ -53,7 +53,7 @@
 													<label for="name" class="col-md-4 control-label">Powtórz nowe hasło</label>
 
 													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+															<input id="name" type="password" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
 															@if ($errors->has('name'))
 																	<span class="help-block">

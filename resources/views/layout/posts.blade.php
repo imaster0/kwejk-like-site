@@ -6,6 +6,7 @@
  ?>
 
 @section('ndbar')
+@if(!isset($nobar))
 <div class="c-submenu row">
 	<div class="container">
 			<ul class="nav nav-pills">
@@ -16,6 +17,7 @@
 			</ul>
 		</div>
 </div>
+@endif
 @endsection
 
 @section('content')
@@ -52,7 +54,9 @@
 
 			@yield('data')
 
-
+			@if($posts->count() == 0)
+				<h1 style="text-align: center; margin-top: 50px;"><b>BRAK POSTÓW ;(</b></h1><br/>
+			@endif
 
 			@foreach($posts as $post)
 
@@ -109,8 +113,8 @@
 								</ul>
 								<ul class="list-inline text-right">
                     <li>
-
-											<a class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  id="dodaj" name="{{$post->id}}" title="Dodaj" href="{{url('login')}}">
+											<?php $ulu = \App\Ulubione::where('user_id', \Auth::User()->id)->where('post_id', $post->id)->first(); ?>
+											<a class="post-button @if(\Auth::Guest() != true) pst-btn @endif @if(isset($ulu)) selected @endif"  id="dodaj" name="{{$post->id}}" title="@if(isset($ulu)) Usuń z ulubionych @else Dodaj do ulubionych @endif" href="{{url('login')}}">
                         <svg   width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                         <circle cx="16" cy="16" r="16" fill="#fff" />
                         <path d="M5.664,14.203l8.539,0l0,-8.539l3.594,0l0,8.539l8.539,0l0,3.594l-8.539,0l0,8.539l-3.594,0l0,-8.539l-8.539,0l0,-3.594Z" fill="#fff"  />

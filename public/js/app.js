@@ -42,9 +42,22 @@ $(function() { //document onload
 	$('.pst-btn').on('click', function(ev){
 		var btn = $(this);
 		var btnid = btn.attr('id');
+
+		//przycisk dodaj
+		if(btnid == "dodaj"){
+			if(btn.hasClass("selected")){
+				btn.attr("title", "Dodaj do ulubionych");
+			}
+			else{
+				btn.attr("title", "Usuń z ulubionych");
+			}
+			btn.toggleClass("selected");
+		}
+		// - koniec dodaj
+
 		$.ajax({
 			method: 'post',
-			url: "user/" + btnid + "/" + btn.attr('name'),
+			url: "../../user/" + btnid + "/" + btn.attr('name'),
 			data: { _token: token}
 		})
 		.done(function(data){
@@ -54,6 +67,8 @@ $(function() { //document onload
 				$('#like-btn-'+btn.attr('name')).text(data[0]);
 				$('#dislike-btn-'+btn.attr('name')).text(data[1]);
 			}
+			else
+				console.log(data);
 		});
 
 		ev.preventDefault();

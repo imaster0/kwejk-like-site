@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vote;
 use App\Post;
+use App\Ulubione;
 
 class PostPanelController extends Controller
 {
@@ -80,7 +81,17 @@ class PostPanelController extends Controller
           }
         break;
         case "dodaj":
-          return "User id: " . $userId . ", added post id: " . $name;
+          $ulu = Ulubione::where('user_id', $userId)->where('post_id', $name)->first();
+          if(!isset($ulu)){
+            Ulubione::create([
+              'user_id' => $userId,
+              'post_id' => $name,
+            ]);
+          }
+          else{
+            $ulu->delete();
+          }
+        //  return "User id: " . $userId . ", added post id: " . $name;
         break;
         case "komentarz":
           return "User id: " . $userId . ", commented post id: " . $name;

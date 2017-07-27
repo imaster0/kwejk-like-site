@@ -290,12 +290,14 @@ a{
 	margin-right: 10px;
 }
 
+
 .post-button path{
 	fill: #fefefe;
 	opacity: 0.6;
 	transition: opacity 0.225s;
 }
 
+.post-button.selected path,
 .post-button:hover path{
 	opacity: 1;
 }
