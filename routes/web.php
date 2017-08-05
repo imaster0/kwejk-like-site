@@ -56,8 +56,14 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('dodaj', function(){
 		return view('dodaj');
 	})->name('dodaj');
+
 	// obsługa formularza dodawania posta
 	Route::post('dodaj', 'PostController@add');
+
+
+	Route::get('on/{id?}', function($id){
+		return view("on", ["postid" => $id]);
+	});
 
 	Route::post('user/{option?}/{name?}', 'PostPanelController@GetOperation');
 });

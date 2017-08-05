@@ -93,12 +93,7 @@ class PostPanelController extends Controller
           }
         //  return "User id: " . $userId . ", added post id: " . $name;
         break;
-        case "komentarz":
-          return "User id: " . $userId . ", commented post id: " . $name;
-        break;
-        case "udostepnij":
-          return "User id: " . $userId . ", shared post id: " . $name;
-        break;
+        
         default:
           return "Error, no such operation: " . $option . ", " . $name;
         break;

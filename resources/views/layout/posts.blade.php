@@ -122,7 +122,8 @@
 											</a>
                   </li>
                     <li>
-                        <a class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  id="komentarz" name="{{$post->id}}" title="Komentarz" href="{{url('login')}}">
+												<?php $pomLink = "on/".$post->id; ?>
+                        <a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarz" href="@if(\Auth::Guest() == true) {{url('login')}} @else {{url($pomLink)}} @endif">
                         <svg  width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 
                         <circle cx="16" cy="16" r="16" fill="#fff" />
@@ -136,7 +137,7 @@
 
                     </li>
                     <li>
-											<a class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  id="udostepnij" name="{{$post->id}}" title="Udostępnij" href="{{url('login')}}">
+											<a class="post-button"  id="udostepnij" name="{{$post->id}}" title="Udostępnij" href="{{url('login')}}">
                         <svg  width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                         <circle cx="16" cy="16" r="16" fill="#fff" />
                         <path d="M19.014,9.097l0,-3.478l9.134,6.099l-9.134,6.098l0,-3.292c-10.976,-0.392 -11.085,8.625 -11.085,8.625c0,0 -0.951,-12.881 11.085,-14.052Z" fill="#fff" />
