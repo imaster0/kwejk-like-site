@@ -83,12 +83,12 @@ class PostController extends Controller{
 
 		//Nowy post jako obrazek .png
 		private function createNewPost($path, array $data){
-
+			$post_width = 678;
 			if(isset($data["image"])){
 				//obrazek pole: szer $post_width // nowy: szer 555px
 				//obliczamy wielkość tekstu
 				//zeruj
-				$post_width = 678;
+
 
 				$title_size = $content_size = 0;
 
@@ -180,7 +180,7 @@ class PostController extends Controller{
 				$top_border = imagefilledrectangle($img, 0, 0, $post_width, 5, $black_color);
 				$bottom_border = imagefilledrectangle($img, 0, $post_height-6, $post_width, $post_height, $black_color);
 				$left_border= imagefilledrectangle($img, 0, 0, 5, $post_height, $black_color);
-				$right_border= imagefilledrectangle($img, 762, 0, $post_width, $post_height, $black_color);
+				$right_border= imagefilledrectangle($img, $post_width-6, 0, $post_width, $post_height, $black_color);
 
 				//logo
 				$logo = imagecreatefrompng("imgs/template/logo_post.png");

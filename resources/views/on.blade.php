@@ -5,6 +5,10 @@
 	else $tag = "all";
  ?>
 
+ @section('strona')
+ <?php $strona = ''; ?>
+ @endsection
+
 @section('ndbar')
 @if(!isset($nobar))
 <div class="c-submenu row">
@@ -22,38 +26,13 @@
 
 @section('content')
 	<!----------------------------------------------------------------------->
-	<!-- RANKING -->
-	<div id="ranking">
-			<div id="ranking-container" class="row text-center">
-				<div class="col-md-8">
-					<h4> AKTUALNOŚCI </h4>
-					<p class="c-opis">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Ut maximus velit quis semper eleifend. Morbi finibus suscipit
-					fringilla. Quisque ullamcorper, lacus et hendrerit commodo, sem lectus
-					feugiat ex, non efficitur purus nisl a enim. Aliquam erat volutpat.
-					</p>
-					<p class="c-temat-dnia alert alert-info">
-						#TEMAT_DNIA: Na co komu dziś wczorajszy dzień?
-					</p>
-			</div>
-				<div class="col-md-4" style="border-left: 1px solid white;">
-				<h4>TOP 5 MIESIĄCA</h4> <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-				</div>
-		</div>
-	</div>
 
 	<!--  CONTENT -->
-	<div id="content">
+	<section id="content">
 			<!-- POSTY -->
 
-			@yield('data')
-
+			<!-- @yield('data') -->
+			<?php $posts = \App\Post::where("id", $postid)->get(); ?>
 			@if($posts->count() == 0)
 				<h1 style="text-align: center; margin-top: 50px;"><b>BRAK POSTÓW ;(</b></h1><br/>
 			@endif
@@ -113,7 +92,7 @@
 								</ul>
 								<ul class="list-inline text-right">
                     <li>
-											<?php if(\Auth::Guest() != true ) $ulu = \App\Ulubione::where('user_id', \Auth::User()->id)->where('post_id', $post->id)->first(); ?>
+											<?php $ulu = \App\Ulubione::where('user_id', \Auth::User()->id)->where('post_id', $post->id)->first(); ?>
 											<a class="post-button @if(\Auth::Guest() != true) pst-btn @endif @if(isset($ulu)) selected @endif"  id="dodaj" name="{{$post->id}}" title="@if(isset($ulu)) Usuń z ulubionych @else Dodaj do ulubionych @endif" href="{{url('login')}}">
                         <svg   width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                         <circle cx="16" cy="16" r="16" fill="#fff" />
@@ -122,7 +101,7 @@
 											</a>
                   </li>
                     <li>
-												<?php $pomLink = "on/" . $post->id; ?>
+												<?php $pomLink = "on/".$post->id; ?>
                         <a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarz" href="@if(\Auth::Guest() == true) {{url('login')}} @else {{url($pomLink)}} @endif">
                         <svg  width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 
@@ -149,8 +128,19 @@
 							</div>
             </div>
 			@endforeach
-				<div class="text-center"> {{ $posts->links() }} </div>
-	</div>
+
+	</section>
+	<!-- komentarze -->
+	<section id="komentarze">
+		<textarea placeholder="Skomentuj ten post..." style="width:678px; height: 50px; border: 2px solid black; margin-bottom: 50px;"></textarea>
+
+		<?php $comments = array(); ?>
+
+
+		@foreach($comments as $comment)
+
+		@endforeach
+	</section>
 
 	<script>
 	var thisUrl = "/";

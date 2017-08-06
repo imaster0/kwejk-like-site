@@ -60,14 +60,12 @@ Route::middleware(['auth'])->group(function(){
 	// obsługa formularza dodawania posta
 	Route::post('dodaj', 'PostController@add');
 
-
-	Route::get('on/{id?}', function($id){
-		return view("on", ["postid" => $id]);
-	});
-
 	Route::post('user/{option?}/{name?}', 'PostPanelController@GetOperation');
 });
 
+Route::get('on/{id?}', function($id){
+	return view("on", ["postid" => $id]);
+});
 
 //--- podstrony z postami
 
