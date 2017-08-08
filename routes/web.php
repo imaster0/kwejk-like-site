@@ -61,11 +61,15 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('dodaj', 'PostController@add');
 
 	Route::post('user/{option?}/{name?}', 'PostPanelController@GetOperation');
+
+
+	Route::post('on/{id?}', 'CommentController@addNew');
 });
 
 Route::get('on/{id?}', function($id){
 	return view("on", ["postid" => $id]);
 });
+
 
 //--- podstrony z postami
 

@@ -92,7 +92,7 @@
 								</ul>
 								<ul class="list-inline text-right">
                     <li>
-											<?php $ulu = \App\Ulubione::where('user_id', \Auth::User()->id)->where('post_id', $post->id)->first(); ?>
+											<?php if(\Auth::Guest() != true ) $ulu = \App\Ulubione::where('user_id', \Auth::User()->id)->where('post_id', $post->id)->first(); ?>
 											<a class="post-button @if(\Auth::Guest() != true) pst-btn @endif @if(isset($ulu)) selected @endif"  id="dodaj" name="{{$post->id}}" title="@if(isset($ulu)) Usuń z ulubionych @else Dodaj do ulubionych @endif" href="{{url('login')}}">
                         <svg   width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                         <circle cx="16" cy="16" r="16" fill="#fff" />
@@ -102,7 +102,7 @@
                   </li>
                     <li>
 												<?php $pomLink = "on/".$post->id; ?>
-                        <a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarz" href="@if(\Auth::Guest() == true) {{url('login')}} @else {{url($pomLink)}} @endif">
+												<a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarze ({{DB::table('comments')->where('post_id', $post->id)->count()}})" href="@if(\Auth::Guest() == true) {{url('login')}} @else {{url($pomLink)}} @endif">
                         <svg  width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 
                         <circle cx="16" cy="16" r="16" fill="#fff" />
@@ -132,13 +132,31 @@
 	</section>
 	<!-- komentarze -->
 	<section id="komentarze">
-		<textarea placeholder="Skomentuj ten post..." style="width:678px; height: 50px; border: 2px solid black; margin-bottom: 50px;"></textarea>
+		<form method="POST" style="margin-bottom: 50px;">
+			{{ csrf_field() }}
+		<textarea name="content" placeholder="Skomentuj ten post..." style="width:678px; height: 50px; border: 2px solid black;"></textarea>
+		<input type="submit" name="Wyślij" value="Wyślij" />
+		</form>
 
-		<?php $comments = array(); ?>
+		<?php $comments = \App\Comment::where('post_id', $postid)->orderBy("id", "desc")->get(); ?>
 
 
 		@foreach($comments as $comment)
 
+			<div class="comment">
+				<div class="row" style="position: relative; height: 50px; margin-bottom: 15px;">
+					<div class="col-xs-6" style="position: absolute; top:50%; left: 0; transform: translateY(-50%);"><h3>{{$comment->user($comment->user_id)}}</h3></div>
+					<div class="col-xs-6 text-right" style="position: absolute; top:50%; right: 0; transform: translateY(-50%);"><i> {{$comment->created_at}} </i></div>
+				</div>
+			<div class="row">
+				<div class="col-xs-12">
+				<p>
+					{{$comment->content}}
+				</p>
+			</div>
+			</div>
+			<hr />
+		</div>
 		@endforeach
 	</section>
 

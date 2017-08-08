@@ -123,7 +123,7 @@
                   </li>
                     <li>
 												<?php $pomLink = "on/" . $post->id; ?>
-                        <a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarz" href="@if(\Auth::Guest() == true) {{url('login')}} @else {{url($pomLink)}} @endif">
+                        <a class="post-button"  id="komentarz" name="{{$post->id}}" title="Komentarze ({{DB::table('comments')->where('post_id', $post->id)->count()}})" href="{{url($pomLink)}}">
                         <svg  width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
 
                         <circle cx="16" cy="16" r="16" fill="#fff" />

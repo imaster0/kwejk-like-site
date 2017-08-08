@@ -93,9 +93,8 @@ class PostPanelController extends Controller
           }
         //  return "User id: " . $userId . ", added post id: " . $name;
         break;
-        
+
         default:
-          return "Error, no such operation: " . $option . ", " . $name;
         break;
       }
 
