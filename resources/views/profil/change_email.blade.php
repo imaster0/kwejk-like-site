@@ -11,40 +11,44 @@
 
 @section('content')
 	<!----------------------------------------------------------------------->
-
+	@if (session('mess'))
+	    <div class="alert alert-info">
+	        {{ session('mess') }}
+	    </div>
+	@endif
 
 	<!--  CONTENT -->
 	<div class="container-fluid">
 	    <div class="row">
           <div class="panel panel-default">
-            	<div class="panel-heading">Twój profil</div>
-
+            	<div class="panel-heading">Mój profil ({{ Auth::User()->name }}) </div>
+							aktualny email: @if(isset(Auth::User()->email)) {{ Auth::User()->email }} @else <i> nie podano </i> @endif
 							<div class="panel-body">
 	                <form class="form-horizontal" role="form" method="POST">
 	                    {{ csrf_field() }}
 											<!-- do poprawienia -->
-											<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-													<label for="name" class="col-md-4 control-label">Hasło</label>
+											<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+													<label for="password" class="col-md-4 control-label">Hasło</label>
 
 													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+															<input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required autofocus>
 
-															@if ($errors->has('name'))
+															@if ($errors->has('password'))
 																	<span class="help-block">
-																			<strong>{{ $errors->first('name') }}</strong>
+																			<strong>{{ $errors->first('password') }}</strong>
 																	</span>
 															@endif
 													</div>
 											</div>
 											<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-													<label for="name" class="col-md-4 control-label">Nowy email</label>
+													<label for="email" class="col-md-4 control-label">Nowy email</label>
 
 													<div class="col-md-6">
-															<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+															<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-															@if ($errors->has('name'))
+															@if ($errors->has('email'))
 																	<span class="help-block">
-																			<strong>{{ $errors->first('name') }}</strong>
+																			<strong>{{ $errors->first('email') }}</strong>
 																	</span>
 															@endif
 													</div>

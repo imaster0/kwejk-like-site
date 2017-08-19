@@ -65,7 +65,7 @@
 							@if( \Auth::user()->role == 1 )
 									<div class="fluid-container" style="background: white; color: black;">
 										<div class="col-xs-6 text-left" style="background: white; color: black;"> <B>ADMIN PANEL</B> </div>
-										<div class="col-xs-6 text-right" style="background: white; color: black;"> <B><a class="btn btn-xs" href="../ver/{{$post->id}}">[WERYFIKUJ]</a>	<a href="../del/{{$post->id}}" class="btn btn-xs">[USUŃ]</a></B> </div>
+										<div class="col-xs-6 text-right" style="background: white; color: black;"> <B><a class="btn btn-xs" href="../ver/{{$post->id}}"> @if(!$post->verified)[WERYFIKUJ] @else [ODWERYFIKUJ] @endif</a>	<a href="../del/{{$post->id}}" class="btn btn-xs">[USUŃ]</a></B> </div>
 									</div>
 							@endif
 						@endif

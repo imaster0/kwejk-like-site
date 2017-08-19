@@ -17,9 +17,10 @@
 	<div class="container-fluid">
 	    <div class="row">
           <div class="panel panel-default">
-            	<div class="panel-heading">Mój profil ({{ Auth::User()->name }})</div>
+            	<div class="panel-heading">Mój profil ({{ Auth::User()->name }}) </div>
 
 							<div class="panel-body text-center">
+
 	                <ul class="list-group">
 										<li class="list-group-item"><a href="profil/moje"> Moje posty </a></li>
 										<li class="list-group-item"><a href="profil/ulubione"> Ulubione posty </a></li>

@@ -19,9 +19,9 @@ class PostController extends Controller{
 			$dt = new DateTime();
 			$diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
 
-			// if($diff < 120){
-			// 	return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
-			// }
+			if($diff < 120){
+				return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
+			}
 
 
 			\Auth::User()->last_post = $dt;
