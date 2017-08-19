@@ -153,8 +153,8 @@ class PostController extends Controller{
 				imagecopy( $img , $logo , ($post_width-112)/2, $post_height-27, 0, 0, 112, 27);
 
 				//generowanie tekstu
-				if(isset($data["title"])) imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 25, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
-				if(isset($data["content"])) imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 25, $calc_content[0][7]+24, $black_color, "fonts/arial.ttf", $calc_content[1]);
+				if(isset($data["title"])) imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 25, $calc_title[0][7]+$title_size, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
+				if(isset($data["content"])) imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 25, $calc_content[0][7]+$content_size, $black_color, "fonts/arial.ttf", $calc_content[1]);
 				imagepng($img, $path);
 				imagedestroy($img);
 			}
@@ -187,8 +187,8 @@ class PostController extends Controller{
 				imagecopy( $img , $logo , ($post_width-112)/2, $post_height-27, 0, 0, 112, 27);
 
 				//generowanie tekstu
-				imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 50, $calc_title[0][7]+36, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
-				imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 50, $calc_content[0][7]+24, $black_color, "fonts/arial.ttf", $calc_content[1]);
+				imagettftext ( $img, $title_size, 0, $calc_title[0][0] + 50, $calc_title[0][7]+$title_size, $black_color, "fonts/arialbd.ttf", $calc_title[1]);
+				imagettftext ( $img, $content_size, 0, $calc_content[0][0] + 50, $calc_content[0][7]+$content_size, $black_color, "fonts/arial.ttf", $calc_content[1]);
 				imagepng($img, $path);
 				imagedestroy($img);
 			}

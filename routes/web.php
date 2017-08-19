@@ -63,6 +63,9 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('user/{option?}/{name?}', 'PostPanelController@GetOperation');
 
 
+	Route::get('ver/{id?}', 'AdminPanel@verify')->middleware('role:admin');
+	Route::get('del/{id?}', 'AdminPanel@delete')->middleware('role:admin');
+
 	Route::post('on/{id?}', 'CommentController@addNew');
 });
 

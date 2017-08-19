@@ -18,6 +18,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,8 +30,12 @@ class User extends Authenticatable
     ];
 
 	//Role, funkcje, które mogą pełnić użytkownicy
-	public function roles(){
-		return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
+	public function hasRole(){
+    $theroles = [
+      'user', 'admin',
+    ];
+
+		return $theroles[$this->role];
 	}
 
   //ulubione

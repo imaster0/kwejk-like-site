@@ -8,7 +8,7 @@ class Post extends Model{
 
 	//czas utworzenia/edycji posta, edytowalne pola
 	public $timestamps = true;
-	protected $fillable = ['user_id', 'path',];
+	protected $fillable = ['user_id', 'path', 'verified'];
 
 	//komentarze odpowiadające temu postowi
 	public function comments(){
