@@ -33,7 +33,7 @@
 					</div>
 				@foreach($users as $user)  <!-- USERS TABLE -->
 					<div class="col-xs-3">
-						({{$user->id}}){{$user->name}}</div>
+						({{$user->id}}) {{$user->name}}</div>
 						 <div class="col-xs-3">
 							{{$user->created_at}}</div>
 							 <div class="col-xs-3">

@@ -141,8 +141,12 @@
 		<?php $comments = \App\Comment::where('post_id', $postid)->orderBy("id", "desc")->get(); ?>
 
 
-		<h3>Komentarze</h3>
+		<h3>Komentarze ({{$comments->count()}})</h3>
 		<hr style="border-top: 3px double #8c8b8b;"/>
+		@if($comments->count() == 0)
+			<h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;"><b>BRAK KOMENTARZY ;(</b></h1><br/>
+		@endif
+
 		@foreach($comments as $comment)
 
 			<div class="comment" style="margin-bottom: 50px; ">

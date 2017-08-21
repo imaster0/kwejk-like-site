@@ -26,7 +26,7 @@ Route::get('/users', function(){
 });
 //-------------
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware('auth')->group(function(){
 	//profil
 	Route::get('/profil', function(){
 		return view('profil.profil');
@@ -102,6 +102,6 @@ Route::get('layout/noexist', function(){
 	return view('layout.noexist');
 });
 
-Route::get('*', function(){
+Route::get('{sth?}', function($sth=null){
 	return view("layout.noexist");
-});
+})->where('sth', '.*');
