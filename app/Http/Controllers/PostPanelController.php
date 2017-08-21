@@ -13,11 +13,12 @@ class PostPanelController extends Controller
 
 
       $userId = \Auth::User()->id;
+      $row = Vote::where('user_id', $userId)->where('post_id', $name)->first();
+      $post = Post::where('id', $name)->first();
 
       switch($option){
         case "like":
-          $row = Vote::where('user_id', $userId)->where('post_id', $name)->first();
-          $post = Post::where('id', $name)->first();
+
 
           if(isset($row)){
             if($row->value == 1){
@@ -49,8 +50,6 @@ class PostPanelController extends Controller
         break;
 
         case "dislike":
-          $row = Vote::where('user_id', $userId)->where('post_id', $name)->first();
-          $post = Post::where('id', $name)->first();
 
           if(isset($row)){
             if($row->value == 1){
