@@ -65,6 +65,10 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('ver/{id?}', 'AdminPanel@verify')->middleware('role:admin');
 	Route::get('del/{id?}', 'AdminPanel@delete')->middleware('role:admin');
+	Route::get('profil/users', function(){
+		return view('profil.users');
+	})->middleware('role:admin');
+	Route::post('profil/users', 'AdminPanel@update')->middleware('role:admin');
 
 	Route::post('on/{id?}', 'CommentController@addNew');
 });
@@ -85,7 +89,7 @@ Route::get('top', function(){
 	return view('top');
 });
 // POCZEKALNIA
-Route:: get('poczekalnia', function(){
+Route::get('poczekalnia', function(){
 	return view('poczekalnia');
 });
 
@@ -93,3 +97,11 @@ Route:: get('poczekalnia', function(){
 
 //LOGOWANIE, REJESTRACJA
 Auth::routes();
+
+Route::get('layout/noexist', function(){
+	return view('layout.noexist');
+});
+
+Route::get('*', function(){
+	return view("layout.noexist");
+});

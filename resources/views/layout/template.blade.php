@@ -69,6 +69,11 @@
                           <li>
       										<a href="/profil"> Mój profil  </a>
       										</li>
+                          @if(\Auth::User()->role == 1)
+                          <li>
+                            <a href="profil/users"> Userzy </a>
+                          </li>
+                          @endif
                           <li class="divider"></li>
                           <li>
       											<a href="{{ route('logout') }}"

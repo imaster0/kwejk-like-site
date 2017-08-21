@@ -20,4 +20,22 @@ class AdminPanel extends Controller
       $thepost->delete();
       return redirect()->back();
     }
+
+    public function update(Request $request){
+    //  print_r($request->all());
+      $table = $request->all();
+      $users = \App\User::all();
+
+      foreach($users as $user){
+        if(!isset($table[$user->id]) || $table[$user->id] != 'on'){
+          $user->role = 0;
+          $user->save();
+        }
+        else{
+          $user->role = 1;
+          $user->save();
+        }
+      }
+      return redirect()->back();
+    }
 }
