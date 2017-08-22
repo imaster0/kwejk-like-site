@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel='shortcut icon' type='image/png' href='/favicon.png' />
 
-      <title>cotynato.eu - najlepsze pomysły i lajfhaki w sieci</title>
+      <title>nacoto.pl - najlepsze pomysły i lajfhaki w sieci</title>
 
       <!-- Fonts & Styles -->
       <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -41,7 +41,7 @@
   					<div class="container">
   							<div class="navbar-header">
   								<div class="navbar-brand"> <!-- LOGO -->
-  									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 28px; margin-top: 8px; margin-left: 15px;" alt="CoTYnaTo?" /></a>
+  									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 20px; margin-top: 15px; margin-left: 15px;" alt="nacoto.pl - strona zawierająca lajfhaki i inspiracje w formie memów" /></a>
   								</div>
   								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
   									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
