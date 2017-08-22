@@ -1,5 +1,13 @@
 @extends('layout.template')
 
+<head>
+	<meta property="og:url"           content="http://imaster0.nazwa.pl/" />
+  <meta property="og:type"          content="article" />
+  <meta property="og:title"         content="Dowiedz się więcej" />
+  <meta property="og:description"   content="Lajfhaki, pomysły, inspiracje - wszystko to w formie krótkich memów!" />
+  <meta property="og:image"         content="http://i.dailymail.co.uk/i/pix/2017/02/08/14/3CF5F32D00000578-4203818-image-a-30_1486562764357.jpg" />
+</head>
+
 <?php $tags = App\Tag::all();
 	if(isset($_GET["tag"])) $tag = $_GET["tag"];
 	else $tag = "all";
