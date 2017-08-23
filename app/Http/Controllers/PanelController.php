@@ -32,4 +32,11 @@ class PanelController extends Controller
       $usr->save();
       return redirect('/');
     }
+
+    public function delete(){
+      $user = \Auth::User();
+      $user->delete();
+
+      return redirect('/');
+    }
 }

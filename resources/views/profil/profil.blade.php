@@ -5,10 +5,6 @@
 <?php $strona = 'profil'; ?>
 @endsection
 
-@section('ndbar')
-
-@endsection
-
 @section('content')
 	<!----------------------------------------------------------------------->
 
@@ -26,7 +22,7 @@
 										<li class="list-group-item"><a href="profil/ulubione"> Ulubione posty </a></li>
 										<li class="list-group-item"><a href="profil/pwchange"> Zmień hasło </a></li>
 										<li class="list-group-item"><a href="profil/emchange"> Zmień email </a></li>
-										<li class="list-group-item"><a href="#"> Usuń konto </a></li>
+										<li class="list-group-item"><a href="profil/delete"> Usuń konto </a></li>
 									</ul>
 	            </div>
           </div>

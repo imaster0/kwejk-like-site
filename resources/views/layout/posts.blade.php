@@ -7,6 +7,31 @@
 
 @section('ndbar')
 @if(!isset($nobar))
+<style>
+@media screen and (max-width: 1199px){
+	body{
+		margin-top: 90px;
+	}
+}
+
+@media screen and (max-width: 607px){
+	body{
+		margin-top: 120px;
+	}
+}
+
+@media screen and (max-width: 426px){
+	body{
+		margin-top: 150px;
+	}
+}
+
+@media screen and (max-width: 356px){
+	body{
+		margin-top: 180px;
+	}
+}
+</style>
 <div class="c-submenu row">
 	<div class="container">
 			<ul class="nav nav-pills">
@@ -84,7 +109,7 @@
 							<div class="col-md-3 col-xs-5">
 								<div class="text-right">
 									{{$post->created_at->format('d/m/Y')}}<br/>
-									{{$post->user->name}}
+									@if($post->user != null){{$post->user->name}} @else nieznany @endif
 								</div>
 							</div>
 						</div>
@@ -196,5 +221,5 @@
 				<div class="text-center"> {{ $posts->links() }} </div>
 	</div>
 
-	
+
 @endsection

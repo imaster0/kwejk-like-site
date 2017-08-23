@@ -5,10 +5,6 @@
 <?php $strona = 'profil'; ?>
 @endsection
 
-@section('ndbar')
-
-@endsection
-
 @section('content')
 	<!----------------------------------------------------------------------->
 	@if (session('mess'))

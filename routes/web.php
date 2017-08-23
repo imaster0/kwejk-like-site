@@ -43,14 +43,17 @@ Route::middleware('auth')->group(function(){
 	Route::get('/profil/pwchange', function(){
 		return view('profil.change_password');
 	});
-
 	Route::post('/profil/pwchange', "PanelController@pwchange");
 
 	Route::get('/profil/emchange', function(){
 		return view('profil.change_email');
 	});
-
 	Route::post('/profil/emchange', "PanelController@emchange");
+	
+	Route::get('/profil/delete', function(){
+			return view('profil.delete');
+	});
+	Route::post('/profil/delete', "PanelController@delete");
 
 	// /dodaj
 	Route::get('dodaj', function(){

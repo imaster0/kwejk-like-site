@@ -9,21 +9,6 @@
  <?php $strona = ''; ?>
  @endsection
 
-@section('ndbar')
-@if(!isset($nobar))
-<div class="c-submenu row">
-	<div class="container">
-			<ul class="nav nav-pills">
-				<li <?php if($tag == 'all') echo ' class="active" '; ?> ><a href="?tag=all">#wszystko</a></li>
-				@foreach($tags as $t)
-					<li <?php if($tag == $t->name) echo ' class="active" '; ?> ><a href='?tag={{$t->name}}'>#{{$t->name}}</a></li>
-				@endforeach
-			</ul>
-		</div>
-</div>
-@endif
-@endsection
-
 @section('content')
 	<!----------------------------------------------------------------------->
 
@@ -55,7 +40,7 @@
 							<div class="col-md-3 col-xs-4">
 								<div class="text-right">
 									{{$post->created_at->format('d/m/Y')}}<br/>
-									{{$post->user->name}}
+									@if($post->user != null){{$post->user->name}} @else nieznany @endif
 								</div>
 							</div>
 						</div>
