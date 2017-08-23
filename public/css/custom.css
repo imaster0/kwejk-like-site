@@ -116,6 +116,7 @@ a{
 	border: 0px;
 	background: #00857A;
 	color: white;
+	z-index: 10001;
 }
 
 .c-menu-first li.active>a{
@@ -130,6 +131,7 @@ position: fixed;
 	color: white;
 	padding: 4px;
 	border: 0px;
+	z-index: 10000;
 }
 
 .c-submenu .nav-pills li a
