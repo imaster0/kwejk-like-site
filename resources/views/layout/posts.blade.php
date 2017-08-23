@@ -98,7 +98,7 @@
                   <ul class="list-inline text-left">
 									  <li>
 
-                          <a class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  id="like" name="{{$post->id}}" title="Lubię to!" href="{{url('login')}}">
+                          <a id="like" class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  name="{{$post->id}}" title="Lubię to!" href="{{url('login')}}">
                             <!-- <svg   width="26px" height="26px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                             <circle cx="16" cy="16" r="16" fill="#fff" />
                             <path d="M12.799,13.567l6.217,-7.589c0,0 1.989,-0.978 2.137,0.796c0.126,1.508 -2.269,5.597 -1.773,6.697l5.38,0c3.691,2.344 -1.731,12.82 -4.889,12.82l-6.646,0c-0.543,0 -0.983,-0.44 -0.983,-0.983l0,-10.855c0,-0.39 0.228,-0.727 0.557,-0.886Z" fill="#000"/>
@@ -117,7 +117,7 @@
     									    <span id="like-btn-{{$post->id}}" class="post-btn-tag">{{$post->up}}</span>
                     </li>
                     <li>
-											  <a class="post-button @if(\Auth::Guest() != true) pst-btn @endif"  id="dislike" name="{{$post->id}}" title="Nie lubię tego" href="{{url('login')}}">
+											  <a id="dislike" class="post-button @if(\Auth::Guest() != true) pst-btn @endif"   name="{{$post->id}}" title="Nie lubię tego" href="{{url('login')}}">
                           <!-- <svg width="26px" height="26px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                           <circle cx="16" cy="16" r="16" fill="#fff" />
                           <path d="M12.799,18.433c-0.329,-0.159 -0.557,-0.496 -0.557,-0.886l0,-10.855c0,-0.543 0.44,-0.983 0.983,-0.983l6.646,0c3.158,0 8.58,10.476 4.889,12.82l-5.38,0c-0.496,1.1 1.899,5.189 1.773,6.697c-0.148,1.774 -2.137,0.796 -2.137,0.796l-6.217,-7.589Z" fill="#000"/>
@@ -196,8 +196,5 @@
 				<div class="text-center"> {{ $posts->links() }} </div>
 	</div>
 
-	<script>
-	var thisUrl = "/";
-	var token = '{{ Session::token() }}';
-	</script>
+	
 @endsection

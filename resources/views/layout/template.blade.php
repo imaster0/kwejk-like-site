@@ -15,7 +15,7 @@
 	    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
       <!-- fb metas -->
       <meta property="og:type"          content="article" />
-      <meta property="og:title"         content="Dowiedz się więcej" />
+      <meta property="og:title"         content="nacoto.pl - zobacz więcej " />
       <meta property="og:description"   content="Lajfhaki, pomysły, inspiracje - wszystko to w formie krótkich memów!" />
 
     </head>
@@ -28,7 +28,7 @@
   					<div class="container">
   							<div class="navbar-header">
   								<div class="navbar-brand"> <!-- LOGO -->
-  									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 20px; margin-top: 15px; margin-left: 15px;" alt="nacoto.pl - strona zawierająca lajfhaki i inspiracje w formie memów" /></a>
+  									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 20px; margin-top: 15px; margin-left: 15px;" alt="nacoto.pl - strona zawierająca lajfhaki, pomysły, inspiracje w formie memów" /></a>
   								</div>
   								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
   									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
@@ -103,11 +103,18 @@
   				</div>
   			</footer>
   		</div>
+
+
+      <!-- Scripts -->
+
+      <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+      <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
+      <script>
+      var thisUrl = "/";
+      var token = '{{ Session::token() }}';
+      </script>
+
+
     </body>
-
-
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 </html>

@@ -45,8 +45,10 @@ class PostPanelController extends Controller
             ]);
             $post->up++;
             $post->save();
-            $row->save();
+            //$row->save();
           }
+
+        return array($post->up, $post->down);
         break;
 
         case "dislike":
@@ -76,8 +78,10 @@ class PostPanelController extends Controller
             ]);
             $post->down++;
             $post->save();
-            $row->save();
+            //$row->save();
           }
+
+        return array($post->up, $post->down);
         break;
         case "dodaj":
           $ulu = Ulubione::where('user_id', $userId)->where('post_id', $name)->first();
@@ -96,8 +100,5 @@ class PostPanelController extends Controller
         default:
         break;
       }
-
-
-      return array($post->up, $post->down);
     }
 }

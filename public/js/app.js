@@ -54,22 +54,19 @@ $(function() { //document onload
 			btn.toggleClass("selected");
 		}
 		// - koniec dodaj
-		console.log("Link: " + "../../user/" + btnid + "/" + btn.attr('name'));
+		//console.log("Link: " + "../../user/" + btnid + "/" + btn.attr('name'));
 
 		$.ajax({
-			method: 'post',
+			method: "post",
 			url: "../../user/" + btnid + "/" + btn.attr('name'),
 			data: { _token: token}
 		})
 		.done(function(data){
-			// DO ZROBIENIA - odśwież dane na pasku
 
-			if(btnid == "like" || btnid == "dislike"){
-				$('#like-btn-'+btn.attr('name')).text(data[0]);
-				$('#dislike-btn-'+btn.attr('name')).text(data[1]);
-			}
-			else
-				console.log(data);
+				if(btnid == "like" || btnid == "dislike"){
+					$('#like-btn-'+btn.attr('name')).text(data[0]);
+					$('#dislike-btn-'+btn.attr('name')).text(data[1]);
+				}
 		});
 
 		ev.preventDefault();
