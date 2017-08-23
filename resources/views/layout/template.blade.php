@@ -30,7 +30,7 @@
   								<div class="navbar-brand"> <!-- LOGO -->
   									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 20px; margin-top: 15px; margin-left: 15px;" alt="nacoto.pl - strona zawierająca lajfhaki, pomysły, inspiracje w formie memów" /></a>
   								</div>
-  								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
+  								<button style="padding: 5px 10px;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
   									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
   								</button>
   							</div>
@@ -83,10 +83,12 @@
   							</div>
           </div>
 
-        <!-- DRUGIE MENU (SUBMENU z kategoriami) -->
-          	@yield('ndbar')
+
   				</div>
+
   			</nav>
+        <!-- DRUGIE MENU (SUBMENU z kategoriami) -->
+            @yield('ndbar')
 
         <!-- CONTENT -->
         <section id="content" class="main_content">
