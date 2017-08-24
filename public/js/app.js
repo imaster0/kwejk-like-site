@@ -54,7 +54,7 @@ $(function() { //document onload
 			btn.toggleClass("selected");
 		}
 		// - koniec dodaj
-		//console.log("Link: " + "../../user/" + btnid + "/" + btn.attr('name'));
+//console.log("Link: " + "../../user/" + btnid + "/" + btn.attr('name'));
 
 		$.ajax({
 			method: "post",

@@ -103,6 +103,7 @@
   						<div class="col-xs-6 text-right">2017</div>
   					</div>
   				</div>
+        <?php  echo "memory limit: " .ini_get("memory_limit")."\n"; ?>
   			</footer>
   		</div>
 

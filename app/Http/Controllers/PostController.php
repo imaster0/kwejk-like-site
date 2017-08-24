@@ -17,11 +17,11 @@ class PostController extends Controller{
 		public function add(Request $request){
 
 			$dt = new DateTime();
-		// $diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
-		//
-		// if($diff < 120){
-		// 	return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
-		// }
+		$diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
+
+		if(\Auth::User()->role != 1 && $diff < 120){
+			return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
+		}
 
 
 			\Auth::User()->last_post = $dt;
@@ -216,10 +216,5 @@ class PostController extends Controller{
 			}
 		}
 
-		//userform
-
-		public function userform(Request $request){
-			print_r($request->all());
-			die();
-		}
+	
 }
