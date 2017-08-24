@@ -85,7 +85,6 @@
 
 									<?php $tags = $post->tags()->get(); ?>
 
-									<b>#na_temat</b>
 									@foreach($tags as $t)
 									 #{{$t->name}}
 									@endforeach
