@@ -30,7 +30,7 @@
 															<button type="submit" class="btn btn-danger">
 																	Tak, usuń
 															</button>
-															<a class="btn btn-success" href="{{url('/')}}">
+															<a class="btn btn-default" href="{{url(url()->previous())}}">
 																	Nie, cofnij
 															</a>
 													</div>

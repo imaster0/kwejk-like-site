@@ -71,6 +71,9 @@
 															<button type="submit" class="btn btn-primary">
 																	Zmień hasło
 															</button>
+															<a class="btn btn-default" href="{{url(url()->previous())}}">
+																	Cofnij
+															</a>
 													</div>
 											</div>
 											<!-- -->

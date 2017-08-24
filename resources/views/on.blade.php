@@ -46,7 +46,7 @@
 						</div>
 
 
-						<div class="c-post-image"><img src="{{asset($post->path)}}" alt="{{htmlspecialchars($post->title)}}; {{htmlspecialchars($post->description)}}" /></div>
+						<div class="c-post-image"><img src="{{asset($post->path)}}" alt="{{$post->title}}; {{$post->description}}" /></div>
 
 						<!-- Panel dolny posta  -->
 

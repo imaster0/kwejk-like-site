@@ -51,8 +51,8 @@ class PostController extends Controller{
 			$posted = new Post();
 			$posted->user_id = \Auth::user()->id;
 			$posted->path = "";
-			$posted->title = $data["title"];
-			$posted->description = $data["content"];
+			$posted->title = htmlspecialchars($data["title"]);
+			$posted->description = htmlspecialchars($data["content"]);
 			$posted->save();
 			//wygenerowany post dostaje id, którym nazwiemy nowy plik
 			$path = 'imgs/posts/' . $posted->id . '.png';

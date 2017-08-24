@@ -44,6 +44,9 @@
 				@endforeach
 				<!-- BTN -->
 				<input style="margin-top: 50px; margin-bottom: 50px;" class="btn btn-primary" type="submit" value="Update" />
+				<a class="btn btn-default" href="{{url(url()->previous())}}">
+						Cofnij
+				</a>
 			</form>
 		</div>
 	</div>

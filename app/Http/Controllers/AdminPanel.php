@@ -17,6 +17,8 @@ class AdminPanel extends Controller
 
     public function  delete($sth){
       $thepost = \App\Post::where("id", $sth)->first();
+
+      if (File::exists($thepost->path)) \File::delete($thepost->path);
       $thepost->delete();
       return redirect()->back();
     }

@@ -50,26 +50,11 @@
 	<!-- RANKING -->
 	<div id="ranking">
 			<div id="ranking-container" class="row text-center">
-				<div class="col-md-8">
 					<h4> AKTUALNOŚCI </h4>
 					<p class="c-opis">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Ut maximus velit quis semper eleifend. Morbi finibus suscipit
-					fringilla. Quisque ullamcorper, lacus et hendrerit commodo, sem lectus
-					feugiat ex, non efficitur purus nisl a enim. Aliquam erat volutpat.
+						Na następnej stronie znajdziesz znany ci obraz ukazujący paryski salon pani Geoffrin.
+						Jak widzisz goście gawędzą ze sobą. Napisz pod ilustracją, przy numerze każdej postaci, czy jej wypowiedź jest zgodna z ideami oświecenia czy nie. Wszystkie decyzje uzasadnij. 
 					</p>
-					<p class="c-temat-dnia alert alert-info">
-						#TEMAT_DNIA: Na co komu dziś wczorajszy dzień?
-					</p>
-			</div>
-				<div class="col-md-4" style="border-left: 1px solid white;">
-				<h4>TOP 5 MIESIĄCA</h4> <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-					-------------------- <br />
-				</div>
 		</div>
 	</div>
 
