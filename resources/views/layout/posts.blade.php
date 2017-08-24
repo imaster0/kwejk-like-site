@@ -53,7 +53,7 @@
 					<h4> AKTUALNOŚCI </h4>
 					<p class="c-opis">
 						Na następnej stronie znajdziesz znany ci obraz ukazujący paryski salon pani Geoffrin.
-						Jak widzisz goście gawędzą ze sobą. Napisz pod ilustracją, przy numerze każdej postaci, czy jej wypowiedź jest zgodna z ideami oświecenia czy nie. Wszystkie decyzje uzasadnij. 
+						Jak widzisz goście gawędzą ze sobą. Napisz pod ilustracją, przy numerze każdej postaci, czy jej wypowiedź jest zgodna z ideami oświecenia czy nie. Wszystkie decyzje uzasadnij.
 					</p>
 		</div>
 	</div>
@@ -186,7 +186,7 @@
 
                     </li>
                     <li>
-											<a class="post-button"  id="udostepnij" name="{{$post->id}}" title="Udostępnij" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fimaster0.nazwa.pl%2Fon%2F{{$post->id}}&amp;src=sdkpreparse">  <!-- TO CHANGE -->
+											<a class="post-button"  id="udostepnij" name="{{$post->id}}" title="Udostępnij" target="_blank" href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fimaster0.nazwa.pl%2Fon%2F{{$post->id}}&amp;src=sdkpreparse', '_blank', 'toolbar=0,location=0,menubar=0');">  <!-- TO CHANGE -->
                         <!-- <svg  width="26px" height="26px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                         <circle cx="16" cy="16" r="16" fill="#fff" />
                         <path d="M19.014,9.097l0,-3.478l9.134,6.099l-9.134,6.098l0,-3.292c-10.976,-0.392 -11.085,8.625 -11.085,8.625c0,0 -0.951,-12.881 11.085,-14.052Z" fill="#fff" />
