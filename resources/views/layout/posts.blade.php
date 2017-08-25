@@ -14,31 +14,22 @@
 	}
 }
 
-@media screen and (max-width: 607px){
+@media screen and (max-width: 767px){
 	body{
-		margin-top: 120px;
+		margin-top: 60px;
 	}
 }
 
-@media screen and (max-width: 426px){
-	body{
-		margin-top: 150px;
-	}
-}
-
-@media screen and (max-width: 356px){
-	body{
-		margin-top: 180px;
-	}
-}
 </style>
 <div class="c-submenu row">
 	<div class="container">
+
 			<ul class="nav nav-pills">
-				<li <?php if($tag == 'all') echo ' class="active" '; ?> ><a href="?tag=all">#wszystko</a></li>
+				<li class="@if($tag == 'all') active @else hidden-sm-down @endif" ><a href="?tag=all">#wszystko</a></li>
 				@foreach($tags as $t)
-					<li <?php if($tag == $t->name) echo ' class="active" '; ?> ><a href='?tag={{$t->name}}'>#{{$t->name}}</a></li>
+					<li class="@if($tag == $t->name) active @else hidden-sm-down @endif" ><a href='?tag={{$t->name}}'>#{{$t->name}}</a></li>
 				@endforeach
+				<li class="show-sm-down" style="float:left;"><a href="#">...</a></li>
 			</ul>
 		</div>
 </div>

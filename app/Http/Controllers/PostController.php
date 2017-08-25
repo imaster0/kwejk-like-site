@@ -41,7 +41,7 @@ class PostController extends Controller{
         return Validator::make($data, [
             'title' => 'nullable|string|max:100',
             'content' => 'nullable|string|max:1000',
-						'image' => 'image|mimes:jpg,jpeg,png',
+						'image' => 'image|mimes:jpg,jpeg,png|dimensions:max_width=3010,max_height=3010',
         ]);
     }
 
@@ -216,5 +216,5 @@ class PostController extends Controller{
 			}
 		}
 
-	
+
 }

@@ -134,6 +134,14 @@ position: fixed;
 	z-index: 10000;
 }
 
+.show-sm-down{
+	display: none;
+}
+.hidden-sm-down{
+	display: inline;
+}
+
+
 .c-submenu .nav-pills li a
 {
   height: 30px;
