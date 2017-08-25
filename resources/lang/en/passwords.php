@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'password' => 'Hasła muszą mieć co najmniej 6 znaków.',
+    'password' => 'Hasła muszą mieć co najmniej 6 znaków i zgadzać się ze sobą.',
     'reset' => 'Twoje hasło zostało zresetowane!',
     'sent' => 'Wysłaliśmy Tobie link do resetu hasła na email!',
     'token' => 'Ten znak hasła jest nieprawidłowy.',
