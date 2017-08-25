@@ -87,6 +87,7 @@ $(function() { //document onload
 	$('.show-sm-down').on('click', function(ev){
 		ev.preventDefault();
 		$(".hidden-sm-down").toggle();
+		$(this).toggle();
 	});
 
 	$(window).on('resize', function(){
