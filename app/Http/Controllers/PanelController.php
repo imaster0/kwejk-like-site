@@ -35,6 +35,13 @@ class PanelController extends Controller
 
     public function delete(){
       $user = \Auth::User();
+      $posts = \App\Post::where('user_id', \Auth::User()->id)->get();
+
+      foreach($posts as $thepost){
+        if (\File::exists($thepost->path)) \File::delete($thepost->path);
+        $thepost->delete();
+      }
+
       $user->delete();
 
       return redirect('/');

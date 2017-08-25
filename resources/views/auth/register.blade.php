@@ -62,6 +62,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label for="regulamin" class="col-md-4 control-label"><input id="regulamin" title="Zapoznałem się z regulaminem" type="checkbox" required></label>
+                                <div class="col-md-6">
+                                 <p>Oświadczam, że zapoznałem się z  <a href="{{asset('regulamin.pdf')}}" target="_blank">regulaminem</a>
+                                 </p>
+                               </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

@@ -99,7 +99,12 @@
   			<footer id="footer" class="well">
   				<div class="container">
   					<div class="row">
-  						<div class="col-xs-6 text-left">kontakt: imaster0x@gmail.com</div>
+  						<div class="col-xs-6 text-left">
+                <ul class="list-inline">
+                  <li><a href="{{asset('regulamin.pdf')}}" style="color: white;" target="_blank">REGULAMIN</a></li>
+                  <li>KONTAKT: imaster0x@gmail.com</li>
+                </ul>
+              </div>
   						<div class="col-xs-6 text-right">2017</div>
   					</div>
   				</div>
