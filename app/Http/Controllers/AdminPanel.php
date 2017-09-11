@@ -9,7 +9,7 @@ class AdminPanel extends Controller
     //
     public function verify($sth){
       $thepost = \App\Post::where("id", $sth)->first();
-      $thepost->verified = true;
+      $thepost->verified = $thepost->verified == true ? false : true;
       $thepost->save();
 
       return redirect()->back();

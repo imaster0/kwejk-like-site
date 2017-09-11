@@ -34,21 +34,23 @@ $(function() { //document onload
 
 
 
+	$('.c-post-image').each(function(){
 
-	// OPCJA 'ROZWIŃ'
-	$('.c-post-image>img').on('load', function(){
-		let wholeImg = $(this).height();
+		var wholeImg = $(this).height();
 
 		if(wholeImg > 800){
-			$(this).parent().css('max-height', '600px');
-			$(this).parent().css('overflow', 'hidden');
-			var sth = $(this).parent().append("<div class='onclickit'>ROZWIŃ</div>");
+			$(this).css('max-height', '600px');
+			$(this).css('overflow', 'hidden');
+			var sth = $(this).append("<div class='onclickit'>ROZWIŃ</div>");
 			$(sth).on('click', function(){
 				$(this).animate({"max-height": wholeImg}, 633, function(){});
 				$(this).children('.onclickit').css('display', 'none');
 			});
 		}
 	});
+
+
+
 
 	//POSTY
 	$('.pst-btn').on('click', function(ev){

@@ -43,14 +43,12 @@
 			<div id="ranking-container" class="row text-center">
 					<h4> AKTUALNOŚCI </h4>
 					<p class="c-opis">
-						Na następnej stronie znajdziesz znany ci obraz ukazujący paryski salon pani Geoffrin.
-						Jak widzisz goście gawędzą ze sobą. Napisz pod ilustracją, przy numerze każdej postaci, czy jej wypowiedź jest zgodna z ideami oświecenia czy nie. Wszystkie decyzje uzasadnij.
+						Masz ciekawe pomysły? Znasz różne "lajfhaki"? Może jesteś artystą? Dziel się najlepszymi pomysłami, udostępniaj i inspiruj innych! Sprawdzaj, komentuj i oceniaj pomysły różnych osób, a najlepsze zostawiaj na potem, dodając je do ulubionych!
 					</p>
 		</div>
 	</div>
 
 	<!--  CONTENT -->
-	<div id="content">
 			<!-- POSTY -->
 
 			@yield('data')
@@ -70,21 +68,23 @@
 									</div>
 							@endif
 						@endif
-						<div class="row c-post-top">
-							<div class="col-md-9 col-xs-7">
-								<div class="tag-bar">
+						<div class="c-post-top">
+							<div class="row">
+								<div class="col-md-9 col-xs-7">
+									<div class="tag-bar">
 
-									<?php $tags = $post->tags()->get(); ?>
+										<?php $tags = $post->tags()->get(); ?>
 
-									@foreach($tags as $t)
-									 #{{$t->name}}
-									@endforeach
+										@foreach($tags as $t)
+										 #{{$t->name}}
+										@endforeach
+									</div>
 								</div>
-							</div>
-							<div class="col-md-3 col-xs-5">
-								<div class="text-right">
-									{{$post->created_at->format('d/m/Y')}}<br/>
-									@if($post->user != null){{$post->user->name}} @else nieznany @endif
+								<div class="col-md-3 col-xs-5">
+									<div class="text-right">
+										{{$post->created_at->format('d/m/Y')}}<br/>
+										@if($post->user != null){{$post->user->name}} @else nieznany @endif
+									</div>
 								</div>
 							</div>
 						</div>
@@ -93,8 +93,16 @@
 						<div class="c-post-image"><img src="{{asset($post->path)}}" alt="{{htmlspecialchars($post->title)}}; {{htmlspecialchars($post->description)}}" /></div>
 
 						<!-- Panel dolny posta  -->
+						<div class="source-link ">
+							<div class="row text-center">
+								@if($post->source != null)
+								<small class="col-xs-12">źródło: <a href="{{$post->source}}" rel="nofollow" target="_blank">{{substr($post->source, 0, 40)}}@if(strlen($post->source) > 40)... @endif</a> </small>
+								 @endif
+							</div>
+						</div>
 
-							<div  class="c-post-panel row">
+							<div  class="c-post-panel">
+								<div class="row">
                   <ul class="list-inline text-left">
 									  <li>
 
@@ -190,11 +198,11 @@
 											</a>
                     </li>
                   </ul>
-							</div>
-            </div>
+								</div>
+							</div> <!-- .c-post-panel -->
+            </div> <!-- .c-post -->
 			@endforeach
 				<div class="text-center"> {{ $posts->links() }} </div>
-	</div>
 
 
 @endsection

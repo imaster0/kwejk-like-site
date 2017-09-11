@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-<rect id="odpowiedz" x="0" y="0" width="32" height="32" style="fill:none;"/><clipPath id="_clip1">
-<rect id="odpowiedz1" x="0" y="0" width="32" height="32"/></clipPath>
-<g clip-path="url(#_clip1)">
-<path d="M15.927,22.21l-0.322,-4.421l6.975,-12.462l3.938,2.204l-6.859,12.049l-3.732,2.63" style="fill:#999;"/>
-<path d="M5.482,26.286c0,0 0.942,-7.521 4.532,-2.129c3.447,5.176 3.55,0.85 4.551,0.311" style="fill:none;stroke:#999;stroke-width:2px;"/>
-</g>
-</svg>

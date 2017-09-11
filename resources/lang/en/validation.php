@@ -36,7 +36,7 @@ return [
     'different'            => 'oraz :other muszą się różnić.',
     'digits'               => 'musi składać się z :digits cyfr.',
     'digits_between'       => 'musi mieć od :min do :max cyfr.',
-    'dimensions'           => 'ma niepoprawne wymiary.',
+    'dimensions'           => 'ma niepoprawne wymiary (max szer. 2000px,  wys. 6000px).',
     'distinct'             => 'ma zduplikowane wartości.',
     'email'                => 'Format jest nieprawidłowy.',
     'exists'               => 'Zaznaczony jest nieprawidłowy.',
@@ -85,7 +85,7 @@ return [
     'string'               => 'musi być ciągiem znaków.',
     'timezone'             => 'musi być prawidłową strefą czasową.',
     'unique'               => 'Taki już występuje.',
-    'uploaded'             => 'Nie udało się wgrać pliku ',
+    'uploaded'             => 'Nie udało się wgrać pliku (max 2mb)',
     'url'                  => 'Format jest nieprawidłowy.',
 
     /*

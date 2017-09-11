@@ -38,7 +38,7 @@
                     <label for="title" class="col-md-2 control-label">Tytuł</label>
 
                     <div class="col-md-8">
-                        <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" autofocus>
+                        <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" maxlength="100" autofocus>
 
                         @if ($errors->has('title'))
                             <span class="help-block">
@@ -49,10 +49,10 @@
                 </div>
 
     						<div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                    <label for="title" class="col-md-2 control-label">Treść</label>
+                    <label for="content" class="col-md-2 control-label">Treść</label>
 
                     <div class="col-md-8">
-				                   <textarea id="content" name="content" type="text" class="form-control" rows="5" value="{{ old('content') }}" autofocus></textarea>
+				                   <textarea id="content" name="content" type="text" class="form-control" rows="5" value="{{ old('content') }}" maxlength="1000" autofocus></textarea>
                           @if ($errors->has('content'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('content') }}</strong>
@@ -74,10 +74,21 @@
                    </div>
                </div>
 <!--- -->
+              <div class="form-group{{ $errors->has('source') ? ' has-error' : '' }}">
+                  <label for="source" class="col-md-2 control-label">Link do źródła</label>
 
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" name="source" id="source" value="{{ old('source') }}">
+                        @if ($errors->has('source'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('source') }}</strong>
+                            </span>
+                        @endif
+                  </div>
+              </div>
 
     						<div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
+                    <div class="col-md-6 col-md-offset-2">
                         <button type="submit" class="btn btn-primary">
                             Nowy post
                         </button>

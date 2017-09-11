@@ -16,18 +16,23 @@ class PostController extends Controller{
 	  // Dodawanie nowego posta
 		public function add(Request $request){
 
-			$dt = new DateTime();
-		$diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
+			if(!isset($request->title) && !isset($request->image) && !isset($request->content))
+				return redirect('/dodaj')->with('mess','Musisz podać przynajmniej jedno z (tytuł, treść, obrazek)!');
 
-		if(\Auth::User()->role != 1 && $diff < 120){
-			return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
-		}
+
+			$dt = new DateTime();
+			$diff = date_create_from_format('Y-m-d H:i:s', $dt->format('Y-m-d H:i:s'))->getTimestamp() - date_create_from_format('Y-m-d H:i:s', \Auth::User()->last_post)->getTimestamp();
+
+			if(\Auth::User()->role != 1 && $diff < 120){
+				return redirect('/dodaj')->with('mess','Możesz dodawać posta raz na 2 min! Pozostało '. (120 - $diff) . ' sekund');
+			}
 
 
 			\Auth::User()->last_post = $dt;
 			\Auth::User()->save();
 			// sprawdzanie, czy podano tytuł i treść
 			$this->validator($request->all())->validate();
+
 			// tworzenie
 			$this->create($request->all());
 			// dodawanie tagów, jeśli są użyte
@@ -41,7 +46,8 @@ class PostController extends Controller{
         return Validator::make($data, [
             'title' => 'nullable|string|max:100',
             'content' => 'nullable|string|max:1000',
-						'image' => 'image|mimes:jpg,jpeg,png|dimensions:max_width=3010,max_height=3010',
+						'image' => 'image|mimes:jpg,jpeg,png|max:2048|dimensions:max_width=2000,max_height=6000',
+						'source' => 'nullable|active_url',
         ]);
     }
 
@@ -53,6 +59,7 @@ class PostController extends Controller{
 			$posted->path = "";
 			$posted->title = htmlspecialchars($data["title"]);
 			$posted->description = htmlspecialchars($data["content"]);
+			$posted->source = $data["source"];
 			$posted->save();
 			//wygenerowany post dostaje id, którym nazwiemy nowy plik
 			$path = 'imgs/posts/' . $posted->id . '.png';
@@ -99,6 +106,9 @@ class PostController extends Controller{
 			}
 
 			if(isset($data["image"])){
+
+
+
 				//margines na topie / bocie
 				$top_margin = $bottom_margin = 30;
 				//obrazek pole: szer $post_width // nowy: szer 555px

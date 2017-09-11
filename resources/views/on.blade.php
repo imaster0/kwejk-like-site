@@ -12,8 +12,7 @@
 @section('content')
 	<!----------------------------------------------------------------------->
 
-	<!--  CONTENT -->
-	<section id="content">
+
 			<!-- POSTY -->
 
 			<!-- @yield('data') -->
@@ -48,6 +47,13 @@
 						<div class="c-post-image"><img src="{{asset($post->path)}}" alt="{{$post->title}}; {{$post->description}}" /></div>
 
 						<!-- Panel dolny posta  -->
+						<div class="source-link ">
+							<div class="row text-center">
+								@if($post->source != null)
+								<small class="col-xs-12">źródło: <a href="{{$post->source}}" rel="nofollow" target="_blank">{{substr($post->source, 0, 40)}}@if(strlen($post->source) > 40)... @endif</a> </small>
+								 @endif
+							</div>
+						</div>
 
 							<div  class="c-post-panel row">
 								<ul class="list-inline text-left">
@@ -149,7 +155,6 @@
             </div>
 			@endforeach
 
-	</section>
 	<!-- komentarze -->
 	<section id="komentarze">
 		<form method="POST" style="margin-bottom: 50px;">
