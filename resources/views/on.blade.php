@@ -23,6 +23,10 @@
 
 			@foreach($posts as $post)
 
+				<?php
+					$get_title = $post->title;
+					$get_path = asset($post->path);
+				 ?>
 					<div  class="c-post">
 						<div class="row c-post-top">
 							<div class="col-md-9 col-xs-8">
@@ -195,4 +199,13 @@
 	var thisUrl = "/";
 	var token = '{{ Session::token() }}';
 	</script>
+@endsection
+
+@section('fbtags')
+<meta property="og:type"          content="article" />
+<meta property="og:title"         content="{{$get_title}}" />
+<meta property="og:site_name"         content="www.nacoto.pl" />
+<meta property="og:image" content="{{$get_path}}" />
+<meta property="og:description"   content="Lajfhaki, pomysły, inspiracje, ciekawostki - wszystko to w formie memów!" />
+<meta name="Description" content="Lajfhaki, pomysły, inspiracje, ciekawostki - wszystko to w formie memów! \n słowa kluczowe: śmieszne, edukujące, szokujące, pouczające, wartościowe, użyteczne, wiedza.">
 @endsection

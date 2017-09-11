@@ -1,5 +1,15 @@
 @extends('layout.posts')
 
+@section('fbtags')
+<meta property="og:type"          content="article" />
+<meta property="og:title"         content="nacoto.pl - codziennie nowe posty" />
+<meta property="og:site_name"         content="www.nacoto.pl" />
+<meta property="og:image" content="{{asset('imgs/main.png')}}" />
+<meta property="og:description"   content="Lajfhaki, pomysły, inspiracje, ciekawostki - wszystko to w formie memów!" />
+<meta name="Description" content="Lajfhaki, pomysły, inspiracje, ciekawostki - wszystko to w formie memów! \n słowa kluczowe: śmieszne, edukujące, szokujące, pouczające, wartościowe, użyteczne, wiedza.">
+@endsection
+
+
 <?php $tags = App\Tag::all();
 	if(isset($_GET["tag"])) $tag = $_GET["tag"];
 	else $tag = "all";

@@ -14,11 +14,8 @@
       <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.css') }}" type="text/css">
 	    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
       <!-- fb metas -->
-      <meta property="og:type"          content="article" />
-      <meta property="og:title"         content="nacoto.pl - zobacz więcej " />
-      <meta property="og:description"   content="Lajfhaki, pomysły, inspiracje - wszystko to w formie krótkich memów!" />
-		<meta name="Description" content="Lajfhaki, pomysły, inspiracje - wszystko to w formie krótkich memów! \n słowa kluczowe: śmieszne, edukujące, szokujące, pouczające, wartościowe, użyteczne, wiedza.">
-
+      @yield('fbtags')
+      
     </head>
     <body>
 	<div id="fb-root"></div>
@@ -29,8 +26,8 @@
 	  js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.10";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-	
-	
+
+
   		<div id="wrapper">
 
   			<!-- MENUBAR -->
@@ -42,7 +39,7 @@
   									<a href="/"> <img src="{{ asset('imgs/template/logo_28.png') }}" style="height: 20px; margin-top: 15px; margin-left: 15px;" alt="nacoto.pl - strona zawierająca lajfhaki, pomysły, inspiracje w formie memów" /></a>
 									<div style=" float: right; padding-top: 7px; padding-left: 7px; padding-right: 0px; padding-bottom: 0px;" class="fb-like" data-href="https://www.facebook.com/NACOTOpl-113763752662731/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
   								</div>
-									
+
   								<button style="padding: 5px 10px;" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
   									<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
   								</button>
