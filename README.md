@@ -1,6 +1,4 @@
-"# project's README"
-
-#TODO
+# TODO
 ## Programowanie
 * 21/06/2017: panel użytkownika, post z obrazkiem
 * 22/06/2017: ulubione użytkownika, top ogólne postów
